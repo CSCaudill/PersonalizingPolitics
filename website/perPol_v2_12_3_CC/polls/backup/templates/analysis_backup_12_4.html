@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+    <!-- Load static folder link and css -->
+	{% load static %}
+	<title>Candidate Analysis</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'polls/css/main_style.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'polls/css/analysis_style.css' %}" />
+<!-- 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script> -->
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="http://code.highcharts.com/highcharts.js"></script>
+	<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
+
+    <!-- Links (sit on top) -->
+	<div class="w3-top">
+	  <div class="w3-row w3-large w3-white">
+		<div class="w3-col s3">
+			<a href="/home/" class="w3-button w3-block">
+				<img src="{% static 'polls/images/header.png' %}" alt="logo" /></a>
+		</div>
+		<div class="w3-col s3">
+			<a href="/home/survey" class="w3-button w3-block"><br>Get Started</a>
+		</div>
+		<div class="w3-col s3">
+		  <a href="/home/#about" class="w3-button w3-block"><br>About</a>
+		</div>
+		<div class="w3-col s3">
+		  <a href="/home/#contact" class="w3-button w3-block"><br>Contact</a>
+		</div>
+	  </div>
+	<hr>
+	</div>
+
+    <!-- Update after properly with padding to create space -->
+<!--     <br><br><br><br><br> -->
+<body>
+<!-- <div class="container">
+  <h2>Candidate Distance Table</h2>
+
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th>Candidate</th>
+        <th>Distance</th>
+        <th>State</th>
+        <th>Year</th>
+      </tr>
+    </thead>
+    <tbody>
+ 	{% for x in data.values %}
+      <tr>
+        <td>{{ x.0 }}</td>
+        <td>{{ x.1 }}</td>
+        <td>{{ x.2 }}</td>
+        <td>{{ x.3 }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div> -->
+	<div class="tab">
+	  <button class="tablinks" onclick="openTab(event, 'Candidates')">Candidates</button>
+	  <button class="tablinks" onclick="openTab(event, 'Senators')">Senators</button>
+	</div>
+
+	<div id="Candidates" class="tabcontent">
+		<table id="candidate_table" class="display" cellspacing="0" width="60%">
+		    <thead>
+		        <tr>
+		            <th>Candidate</th>
+		            <th>Overall Similarity (%)</th>
+		            <th>State</th>
+		            <th>Year</th>
+		            <th>Battleground State</th>
+		            <th>Return on Donation</th>
+		            <th>Social Similarity</th>
+		            <th>Economic Similarity</th>
+		        </tr>
+		    </thead>
+		    <tbody>
+		        {% for x in can_data.values %}
+		  		<tr>
+			        <td>{{ x.1 }}</td>
+			        <td>{{ x.2 }}</td>
+			        <td>{{ x.6 }}</td>
+			        <td>{{ x.7 }}</td>
+			        <td>{{ x.0 }}</td>
+			        <td>{{ x.4 }}</td>
+			        <td>{{ x.5 }}</td>
+			        <td>{{ x.3 }}</td>
+			    </tr>
+		    	{% endfor %}
+			</tbody>
+		</table> 
+	</div>
+
+	<div id="Senators" class="tabcontent">
+		<table id="senator_table" class="display" cellspacing="0" width="60%">
+			<thead>
+		        <tr>
+		            <th>Senator</th>
+		            <th>Overall Similarity (%)</th>
+		            <th>State</th>
+		            <th>Social Similarity</th>
+		            <th>Economic Similarity</th>
+		        </tr>
+    		</thead>
+		    <tbody>
+		        {% for y in sen_data.values %}
+		  		<tr>
+			        <td>{{ y.2 }}</td>
+			        <td>{{ y.0 }}</td>
+			        <td>{{ y.4 }}</td>
+			        <td>{{ y.3 }}</td>
+			        <td>{{ y.1 }}</td>
+			    </tr>
+		    	{% endfor %}
+			</tbody>
+		</table>
+	</div>
+
+
+</body>
+
+<script type="text/Javascript">
+	$(document).ready(function() {
+    	$('#candidate_table').DataTable({
+        	"order": [[ 1, "desc" ]]
+    	});
+	});
+
+	$(document).ready(function() {
+    	$('#senator_table').DataTable({
+        	"order": [[ 1, "desc" ]]
+    	});
+	});
+
+	function openTab(evt, name) {
+	    var i, tabcontent, tablinks;
+	    tabcontent = document.getElementsByClassName("tabcontent");
+	    for (i = 0; i < tabcontent.length; i++) {
+	        tabcontent[i].style.display = "none";
+	    }
+	    tablinks = document.getElementsByClassName("tablinks");
+	    for (i = 0; i < tablinks.length; i++) {
+	        tablinks[i].className = tablinks[i].className.replace(" active", "");
+	    }
+	    document.getElementById(name).style.display = "block";
+	    evt.currentTarget.className += " active";
+}
+</script>
+
+
+</html>

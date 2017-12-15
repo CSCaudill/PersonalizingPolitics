@@ -1,0 +1,7 @@
+Django==1.11.7
+pytz==2017.3
+us==1.0.0
+pandas==0.20.3
+numpy==1.12.1
+prettytable==0.7.2
+pytz==2017.3

@@ -1,0 +1,115 @@
+##### store results from our data frames in Django (https://docs.djangoproject.com/en/1.11/topics/db/models/)
+Django uses models to pseudocode a database (so no database set up required!)
+We'd create a class for every table in models.py that has the formatting of our database table.
+
+Example code (https://docs.djangoproject.com/en/1.11/topics/db/models/):
+from django.db import models
+
+class Musician(models.Model):
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    instrument = models.CharField(max_length=100)
+    id = models.AutoField(primary_key=True)
+
+class Album(models.Model):
+    artist = models.ForeignKey(Musician, on_delete=models.CASCADE)
+    name = models.CharField(max_length=100)
+    release_date = models.DateField()
+    num_stars = models.IntegerField()
+
+
+class Person(models.Model):
+    SHIRT_SIZES = (
+        ('S', 'Small'),
+        ('M', 'Medium'),
+        ('L', 'Large'),
+    )
+    name = models.CharField(max_length=60)
+    shirt_size = models.CharField(max_length=1, choices=SHIRT_SIZES)
+
+
+Use the save function to save items into the database.
+It’s important to remember to call the superclass method – that’s that super(Blog, self).save(*args, **kwargs)
+business – to ensure that the object still gets saved into the database. If you forget to call the superclass
+method, the default behavior won’t happen and the database won’t get touched.
+
+from django.db import models
+
+class Blog(models.Model):
+    name = models.CharField(max_length=100)
+    tagline = models.TextField()
+
+    def save(self, *args, **kwargs):
+        if self.name == "Yoko Ono's blog":
+            return # Yoko shall never have her own blog!
+        else:
+            super(Blog, self).save(*args, **kwargs) # Call the "real" save() method.
+
+  Can have abstracted and meta tables (see link for code for more details)
+  Default is that all fields are required.
+
+Returning Data:
+Use class.objects.all() to return all data
+Use Entry.objects.filter(arguments) to return filtered DATA
+Can chain filters/exclude functions to create complex queries
+
+e.g.
+>>> Entry.objects.filter(
+...     headline__startswith='What'
+... ).exclude(
+...     pub_date__gte=datetime.date.today()
+... ).filter(
+...     pub_date__gte=datetime.date(2005, 1, 30)
+... )
+
+Can also aggregate (https://docs.djangoproject.com/en/1.11/topics/db/aggregation/)
+need to import appropriate aggregation functions (e.g. max, min, avg from django.db.models)
+Book.objects.all().aggregate(Avg('price'))
+
+
+How to mass upload our data into Django (mostly seems to be from csv?):
+looks like there are a number of prebuilt packages: https://djangopackages.org/grids/g/data-import/
+this one has a web interface (maybe the easiest way to do it??): https://djangopackages.org/packages/p/django-data-wizard/
+
+This link also seems to be pretty simple: create a script to pull the csv into the model
+Once the data is in Django once, it should store it until we dump the data (dumpdata):
+http://mitchfournier.com/2011/10/11/how-to-import-a-csv-or-tsv-file-into-a-django-model/
+
+however most conventional way is to use fixtures: https://docs.djangoproject.com/en/dev/howto/initial-data/
+https://coderwall.com/p/mvsoyg/django-dumpdata-and-loaddata
+  Basically is a file with the initial data (must be JSON, XML, YAML). data for all models can be import in the same file. data is added with manage.py dumpdata command.
+  We might be able to use a web-based version to convert some of our csv's into this format or export the dataframes into JSON format
+  ex in JSON:
+  [
+    {
+      "model": "myapp.person",
+      "pk": 1,
+      "fields": {
+        "first_name": "John",
+        "last_name": "Lennon"
+      }
+    },
+    {
+      "model": "myapp.person",
+      "pk": 2,
+      "fields": {
+        "first_name": "Paul",
+        "last_name": "McCartney"
+      }
+    }
+  ]
+
+##### store our models in Django?
+Seems like we might need to pickle it from ipynb and then we can import into django?
+see: https://machinelearningmastery.com/save-load-machine-learning-models-python-scikit-learn/
+
+
+##### get visualizations into Django
+Here's an example using leaflet in Django.
+https://github.com/makinacorpus/django-leaflet/tree/master/example/mushrooms
+
+Also how to generate tables from QuerySets:
+https://django-tables2.readthedocs.io/en/latest/
+
+There might also be some in-built models that can output as a table?
+https://stackoverflow.com/questions/2283611/output-django-model-as-table

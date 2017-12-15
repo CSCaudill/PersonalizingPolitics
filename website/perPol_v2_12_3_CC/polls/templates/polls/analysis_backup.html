@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+    <!-- Load static folder link and css -->
+	{% load static %}
+	<title>Candidate Analysis</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<!-- JQuery 1.12.4-->
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+	<!-- DataTables 1.10.16-->
+	<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
+
+	<!-- D3.js v3-->
+	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+
+    <!-- Bootstrap 3.3.7 -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- <script src="http://www.bacubacu.com/colresizable/js/colResizable-1.5.min.js"></script> -->
+
+	<!-- Custom CSS -->
+	<!-- <link rel="stylesheet" type="text/css" href="{% static 'polls/css/main_style.css' %}" /> -->
+	<!-- <link rel="stylesheet" type="text/css" href="{% static 'polls/css/analysis_style.css' %}" /> -->
+	<link rel="stylesheet" type="text/css" href="../../static/polls/css/main_style.css" />
+	<link rel="stylesheet" type="text/css" href="../../static/polls/css/analysis_style.css" />
+
+    <!-- Links (sit on top) -->
+	<div class="w3-top">
+	  <div class="w3-row w3-large w3-white">
+		<div class="w3-col s3">
+			<a href="/home/" class="w3-button w3-block">
+				<!-- <img src="{% static 'polls/images/header.png' %}" alt="logo" /></a> -->
+				<img src="../../static/polls/images/header.png" alt="logo" /></a>
+		</div>
+		<div class="w3-col s3">
+			<a href="/home/survey" class="w3-button w3-block"><br>Get Started</a>
+		</div>
+		<div class="w3-col s3">
+		  <a href="/home/#about" class="w3-button w3-block"><br>About</a>
+		</div>
+		<div class="w3-col s3">
+		  <a href="/home/#contact" class="w3-button w3-block"><br>Contact</a>
+		</div>
+	  </div>
+	<hr>
+	</div>
+
+    <!-- Update after properly with padding to create space -->
+    <br><br><br><br><br>
+<body>
+
+	<div class=title_header>
+			<p>words words words</p>
+
+			<!-- buttons to apply/remove state filter -->
+			<button id="show_state" class="w3-button w3-blue" onclick="renderPlot('Candidates', state_filter='{{ user_state|safe }}', data_to_view='NA', category='NA'); renderPlot('Senators', state_filter='{{ user_state|safe }}', data_to_view='NA', category='NA'); senator_scale(); candidate_scale(); filterTable('#candidate_table', '{{ user_state|safe }}', 3); filterTable('#senator_table', '{{ user_state|safe }}', 2);  $(this).hide(); $('#show_all').show()">Show My State</button>
+			<button id="show_all" class="w3-button w3-blue" style="display: none;" onclick="renderPlot('Candidates', state_filter=null, data_to_view='NA', category='NA'); candidate_scale(); renderPlot('Senators', state_filter=null, data_to_view='NA', category='NA'); senator_scale(); removeTableFilter('#candidate_table', 3); removeTableFilter('#senator_table', 2); $(this).hide(); $('#show_state').show()">Show All States</button>
+		
+		<!-- button and modal box to allow user to adjust their views -->
+		<!-- form inside box -->
+		<!-- <div class="w3-container"> -->
+			<button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-blue">Adjust My Views</button>
+  			<div id="id01" class="w3-modal">
+			    <div class="w3-modal-content">
+			    	<header class="w3-container w3-blue"> 
+			        	<div class="w3-container">
+			        		<span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+			        	<h2>Adjust Survey Responses</h2>
+      				</header>
+			        			<div class="survey-general">
+									{% for field in form %}
+									    <form action="/home/vote/" method="post">
+									    	{% csrf_token %}
+									        <div class="row">
+									            <div class="col-topic">
+									                {{ field.label_tag }}
+									            </div>
+
+									            <!-- Formatting is different for the state selection -->
+									            {% if field.label == 'Select your state' %}
+													<div class='col-dropdown'>
+														<select name="state_select">
+															{% for choice in field %}				
+																{{choice}}
+															{% endfor %}
+														</select>
+													</div>
+									            {% endif %}
+
+									            {% if field.label != 'Select your state' %}
+										            {% for choice in field %}
+										                <div class="col-select">
+										                   {{ choice }}
+										                </div>
+										            {% endfor %}
+										        {% endif %}
+									        </div>
+								    
+									{% endfor %}
+
+											<div class="button-middle">
+											<br>
+											<input id="submit-btn" class="w3-btn w3-block w3-blue" type="submit" value="Vote!" />
+											</div>
+										</form>
+								</div>
+			      		</div>
+			</div>
+	</div>
+
+	<!-- Create tabs to toggle between candidates and current senators-->
+	<div class="tab">
+	  <button class="tablinks" onclick="openTab(event, 'Candidates'); renderPlot('Candidates', state_filter='NA', data_to_view='NA', category='NA'); candidate_scale();" id='defaultOpen'>Candidates</button>
+	  <button class="tablinks" onclick="openTab(event, 'Senators'); renderPlot('Senators', state_filter='NA', data_to_view='NA', category='NA'); senator_scale();">Senators</button>
+	</div>
+
+	<!-- ############################# -->
+	<!-- Candidate Tab -->
+	<!-- ############################# -->
+
+	<div id="Candidates" class="tabcontent">
+
+		<!-- top header for candidate view -->
+		
+		<!-- </div> -->
+
+		<!-- ############################# -->
+		<!-- left half of candidate tab -->
+		<!-- ############################# -->
+
+		<div class="table">
+			<div class="detail">
+				<p>Chris to add text and buttons and stuff.<br>Be sure to include that you can shift click headers to sort by multiple columns.<p>
+			</div>
+			<table id="candidate_table" class=display cellspacing="0" width="80%">
+			    <thead>
+			        <tr>
+			            <th>Candidate</th>
+			            <th data-toggle="tooltip" data-placement="top" title="Calculated percent that the candidate aligns with your views">Overall Similarity (%)</th>
+			            <th data-toggle="tooltip" data-placement="top" title="Calculated likelihood of winning election">Election Prediction (%)</th>
+			            <th>State</th>
+			            <th>Year</th>
+			            <th>Political Affiliation</th>
+			            <th data-toggle="tooltip" data-placement="top" title="State in which the election is expected to be close">Battleground State</th>
+			            <th data-toggle="tooltip" data-placement="top" title="Insert text about Return on Donation">Return on Donation</th>
+			            <th data-toggle="tooltip" data-placement="top" title="Calculated percent that the candidate aligns with your social views">Social Similarity (%)</th>
+			            <th data-toggle="tooltip" data-placement="top" title="Calculated percent that the candidate aligns with your economic views">Economic Similarity (%)</th>
+			        </tr>
+			    </thead>
+			    <tbody>
+			        {% for x in can_data.values %}
+			  		<tr>
+			  			<!-- the output order of the columns is alphabetical by data field-->
+			  			<!-- if adding new columns, the order may change -->
+
+			  			<!-- name -->
+				        <td>{{ x.3 }}</td>
+				        <!-- overall_sim -->
+				        <td>{{ x.4 }}</td>
+				        <!-- election_pred -->
+				        <td>{{ x.2 }}</td>
+				        <!-- state -->
+				        <td>{{ x.8 }}</td>
+				        <!-- year -->
+				        <td>{{ x.9 }}</td>
+				        <!-- party -->
+				        <td>{{ x.5 }}
+				        <!-- battleground -->
+				        <td>{{ x.0 }}</td>
+				        <!-- return_on_donation -->
+				        <td>{{ x.6 }}</td>
+				        <!-- social_sim -->
+				        <td>{{ x.7 }}</td>
+				        <!-- econ_sim -->
+				        <td>{{ x.1 }}</td>
+				    </tr>
+			    	{% endfor %}
+				</tbody>
+			</table>
+		</div>
+
+		<!-- ############################# -->
+		<!-- right half of candidate tab -->
+		<!-- ############################# -->
+
+		<div class="viz">
+			<div class="detail">
+				<p>Chris to add text and buttons and stuff</p>
+
+					<!-- button to toggle between prediction plot and similarity plot -->
+				<p>Data to display: <button id="plot_prediction" class="w3-button w3-blue" onclick="renderPlot(view='Candidates', 'NA', data_to_view='prediction', 'NA'); candidate_scale(); $(this).hide(); $('#plot_similarity').show()">Prediction Scores</button>
+				<button id="plot_similarity" class="w3-button w3-blue" style="display: none;" onclick="renderPlot(view='Candidates', 'NA', data_to_view='similarity', 'NA'); candidate_scale(); $(this).hide(); $('#plot_prediction').show()">Similarity Scores</button>
+
+				<!-- button to toggle between coloring by state and by party -->
+				Categorize By: <button id="plot_state" class="w3-button w3-blue" onclick="renderPlot(view='Candidates', state_filter='NA', data_to_view='NA', category='state'); candidate_scale(); $(this).hide(); $('#plot_party').show()">State</button>
+				<button id="plot_party" class="w3-button w3-blue" style="display: none;" onclick="renderPlot(view='Candidates', state_filter='NA', data_to_view='NA', category='party'); candidate_scale(); $(this).hide(); $('#plot_state').show()">Polical Affiliation</button></p>
+			</div>
+
+			<!-- visualization -->
+			<div id="can_scatter"></div>
+			<!-- button to rescale viz -->
+    		<input id="candidate_rescale" type="button" class="w3-btn w3-block w3-blue" name="candidate_rescale" value="Rescale">
+    	</div>
+	</div>
+
+	<!-- ############################# -->
+	<!-- Senator Tab -->
+	<!-- ############################# -->
+
+	<div id="Senators" class="tabcontent">
+
+		<!-- ############################# -->
+		<!-- left half of senator tab -->
+		<!-- ############################# -->
+
+		<div class='table'>
+			<div class="detail">
+				<p>Chris to add text and buttons and stuff<p>
+			</div>
+			<table id="senator_table" class="display" cellspacing="0" width="90%">
+				<thead>
+			        <tr>
+			            <th>Senator</th>
+			            <th data-toggle="tooltip" data-placement="top" title="Calculated percent that the candidate aligns with your views">Overall Similarity (%)</th>
+			            <th>State</th>
+			            <th>Political Affiliation</th>
+			            <th data-toggle="tooltip" data-placement="top" title="Calculated percent that the candidate aligns with your social views">Social Similarity (%)</th>
+			            <th data-toggle="tooltip" data-placement="top" title="Calculated percent that the candidate aligns with your economic views">Economic Similarity (%)</th>
+			        </tr>
+	    		</thead>
+			    <tbody>
+			        {% for y in sen_data.values %}
+			  		<tr>
+			  			<!-- name -->
+				        <td>{{ y.1 }}</td>
+				        <!-- overall_sim -->
+				        <td>{{ y.2 }}</td>
+				        <!-- state -->
+				        <td>{{ y.5 }}</td>
+				        <!-- party -->
+				        <td>{{ y.3 }}</td>
+				        <!-- social_sim -->
+				        <td>{{ y.4 }}</td>
+				        <!-- econ_sim -->
+				        <td>{{ y.0 }}
+				    </tr>
+			    	{% endfor %}
+				</tbody>
+			</table>
+		</div>
+
+		<!-- ############################# -->
+		<!-- right half of the senator tab -->
+		<!-- ############################# -->
+
+		<div class="viz">
+			<div class="detail">
+				<p>Chris to add text and buttons and stuff<p>
+
+				<!-- button to toggle between coloring by state and by party -->
+				<p>Categorize By: <button id="plot_state_sen" class="w3-button w3-blue" onclick="renderPlot(view='Senators', state_filter='NA', data_to_view='NA', category='state'); senator_scale(); $(this).hide(); $('#plot_party_sen').show()">State</button>
+				<button id="plot_party_sen" class="w3-button w3-blue" style="display: none;" onclick="renderPlot(view='Senators', state_filter='NA', data_to_view='NA', category='party'); senator_scale(); $(this).hide(); $('#plot_state_sen').show()">Polical Affiliation</button></p>
+			</div>
+
+
+			<div id="sen_scatter"></div>
+	    	<input id="senator_rescale" type="button" class="w3-btn w3-block w3-blue" name="senator_rescale" value="Rescale">
+    	</div>
+	</div>
+
+
+<script type="text/Javascript">
+
+	// Display tooltip over column header
+	$(document).ready(function(){
+    	$('[data-toggle="tooltip"]').tooltip({
+    		container: 'body'
+    		});   
+	});
+
+	// Default to sort by overall similarity
+	$(document).ready(function() {
+    	var table = $('#candidate_table').DataTable({
+        	"order": [[ 1, "desc" ]]
+    	});
+	});
+
+
+	// $("#candidate_table").colResizable({liveDrag:true});
+
+	// Default to sort by overall similarity
+	$(document).ready(function() {
+    	$('#senator_table').DataTable({
+        	"order": [[ 1, "desc" ]]
+    	});
+	});
+
+	// function to open the different tabs
+	function openTab(evt, name) {
+	    var i, tabcontent, tablinks;
+	    tabcontent = document.getElementsByClassName("tabcontent");
+	    for (i = 0; i < tabcontent.length; i++) {
+	        tabcontent[i].style.display = "none";
+	    }
+	    tablinks = document.getElementsByClassName("tablinks");
+	    for (i = 0; i < tablinks.length; i++) {
+	        tablinks[i].className = tablinks[i].className.replace(" active", "");
+	    }
+	    document.getElementById(name).style.display = "block";
+	    evt.currentTarget.className += " active";
+	}
+
+	// open the candidate table by default
+	document.getElementById("defaultOpen").click();
+
+	var global_state = null;
+	var global_data_to_view = null;
+	var global_category = null;
+
+	// d3 visualization for candidate similarity
+	function renderPlot(view, state_filter, data_to_view, category){
+ 
+
+		// These values are used to allow a user to change their view with one button,
+		// and then have the adjusted view persist when changing the view with a different button.
+
+		if (state_filter == 'NA'){
+			state_filter = global_state;
+		}
+		if (data_to_view == 'NA'){
+			data_to_view = global_data_to_view;
+		}
+		if (category == 'NA'){
+			category = global_category;
+		}
+
+		global_state = state_filter;
+		global_data_to_view = data_to_view;
+		global_category = category;
+
+		if (view == 'Senators'){
+			var data = {{ sen_json|safe }};
+			var element = "#sen_scatter";
+			var button = "#senator_rescale";
+			if (state_filter != null && state_filter != 'All'){
+				data=data
+					.filter(function(d){ return d.state == state_filter})
+			}
+
+		} else if (view == 'Candidates'){
+			var data = {{ can_json|safe }};
+			var element = '#can_scatter';
+			var button = '#candidate_rescale';
+			if (state_filter != null && state_filter != 'All'){
+				data=data
+					.filter(function(d){ return d.state == state_filter})
+			}
+		}
+
+		if (data_to_view == 'similarity' || data_to_view == null){
+			var xCat = 'econ_sim',
+		    	yCat = 'social_sim',
+		    	xlab = 'Economic Similarity',
+		    	ylab = 'Social Similarity',
+		    	title_data = 'Economic vs Social Similarity ';
+
+		} else if (data_to_view == 'prediction'){
+			var xCat = 'election_pred',
+		    	yCat = 'overall_sim',
+		    	xlab = 'Election Prediction',
+		    	ylab = 'Overall Similarity',
+		    	title_data = 'Predicted Election Likelihood vs Overall Similarity ';
+		}
+
+		if (category == 'state'){
+			var colorCat = "state";
+			var color = d3.scale.category10();
+			var title_category = 'by State';
+		} else if (category == 'party' || category == null){
+			var colorCat = 'party'
+			var color = d3.scale.ordinal()
+				.domain(['Republican', 'Democrat', 'Libertarian', 'Green', 'Independent'])
+				.range(['#FF0000', '#4169E1', '#FFA500', '#008000', '#000000']);
+			var title_category = 'by Political Affiliation';
+		}
+
+		title_text = title_data + title_category;
+
+		var margin = { top: 50, right: 120, bottom: 50, left: 55 },
+		    // outerWidth = 1050,
+		    outerWidth = parseInt(d3.select(element).style('width')),
+		    outerHeight = 500,
+		    width = outerWidth - margin.left - margin.right,
+		    height = outerHeight - margin.top - margin.bottom;
+
+		var x = d3.scale.linear()
+		    .range([0, width]).nice();
+
+		var y = d3.scale.linear()
+		    .range([height, 0]).nice();
+
+		  // var xMax = d3.max(data, function(d) { return d[xCat]; }) * 1.03,
+		  //     xMin = d3.min(data, function(d) { return d[xCat]; }) * 0.97,
+		  //     xMin = xMin > 0 ? 0 : xMin,
+		  //     yMax = d3.max(data, function(d) { return d[yCat]; }) * 1.03,
+		  //     yMin = d3.min(data, function(d) { return d[yCat]; }) * 0.97,
+		  //     yMin = yMin; //> 0 ? 0 : yMin;
+
+		  var xMax = 100,
+		      xMin = 0,
+		      yMax = 100,
+		      yMin = 0;
+
+
+		  x.domain([xMin, xMax]);
+		  y.domain([yMin, yMax]);
+
+		  var xAxis = d3.svg.axis()
+		      .scale(x)
+		      .orient("bottom")
+		      .tickSize(-height);
+
+		  var yAxis = d3.svg.axis()
+		      .scale(y)
+		      .orient("left")
+		      .tickSize(-width);
+
+		  var tip = d3.tip()
+		      .attr("class", "d3-tip")
+		      .offset([-10, 0])
+		      .html(function(d) {
+		        // return xCat + ": " + d[xCat] + "<br>" + yCat + ": " + d[yCat];
+		        return d.name + '<br>' + 'Party: ' + d.party + '<br>' + 'State: ' + d.state +'<br>' + xlab + ': ' + d[xCat] +'%' + '<br>' + ylab + ': ' + d[yCat] + '%';
+		      });
+
+		  var zoomBeh = d3.behavior.zoom()
+		      .x(x)
+		      .y(y)
+		      .scaleExtent([0, 500])
+		      .on("zoom", zoom);
+
+		  d3.select(element).selectAll("svg").remove();
+		  var svg = d3.select(element)
+		    .append("svg")
+		      .attr("width", outerWidth)
+		      .attr("height", outerHeight)
+		    .append("g")
+		      .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+		      .call(zoomBeh);
+
+		  svg.call(tip);
+
+		  svg.append("rect")
+		      .attr("width", width)
+		      .attr("height", height);
+
+		  svg.append("g")
+		      .classed("x axis", true)
+		      .attr("transform", "translate(0," + height + ")")
+		      .call(xAxis)
+		    .append("text")
+		      .classed("label", true)
+		      .attr("x", width)
+		      .attr("y", margin.bottom - 10)
+		      .style("text-anchor", "end")
+		      .text(xlab);
+
+		  svg.append("g")
+		      .classed("y axis", true)
+		      .call(yAxis)
+		    .append("text")
+		      .classed("label", true)
+		      .attr("transform", "rotate(-90)")
+		      .attr("y", -margin.left)
+		      .attr("dy", ".9em")
+		      .style("text-anchor", "end")
+		      .text(ylab);
+
+	      svg.append("text")
+	        .attr("x", (width / 2))             
+	        .attr("y", 0 - (margin.top / 2))
+	        .attr("text-anchor", "middle")  
+	        .style("font-size", "20px") 
+	        .style("text-decoration", "underline")  
+	        .text(title_text);
+
+		  var objects = svg.append("svg")
+		      .classed("objects", true)
+		      .attr("width", width)
+		      .attr("height", height);
+
+		  objects.append("svg:line")
+		      .classed("axisLine hAxisLine", true)
+		      .attr("x1", 0)
+		      .attr("y1", 0)
+		      .attr("x2", width)
+		      .attr("y2", 0)
+		      .attr("transform", "translate(0," + height + ")");
+
+		  objects.append("svg:line")
+		      .classed("axisLine vAxisLine", true)
+		      .attr("x1", 0)
+		      .attr("y1", 0)
+		      .attr("x2", 0)
+		      .attr("y2", height);
+
+		  objects.selectAll(".dot")
+		      .data(data)
+		    .enter().append("circle")
+		      .classed("dot", true)
+		      .attr("r", function (d) { return 5; })
+		      .attr("transform", transform)
+		      .style("fill", function(d) { return color(d[colorCat]); })
+		      .on("mouseover", tip.show)
+		      .on("mouseout", tip.hide);
+		  //     .attr("class", function(d) {  
+		  // 		return "state " + "color-" + color(d.colorCat).substring(1);
+				// });
+
+		  var legend = svg.selectAll(".legend")
+		      .data(color.domain())
+		    .enter().append("g")
+		      .classed("legend", true)
+		      .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+
+		  legend.append("circle")
+		      .attr("r", 3.5)
+		      .attr("cx", width + 20)
+		      .attr("fill", color);
+		   //    .on("mouseover", function(d, i) {
+		  	// 		svg.selectAll("circle").style("stroke", "blue");
+					// })
+		   //    .on("mouseout", function(d, i) {
+		   //              svg.selectAll("circle").style("stroke", "white");
+		   //          });
+
+		  legend.append("text")
+		      .attr("x", width + 26)
+		      .attr("dy", ".35em")
+		      .text(function(d) { return d; });
+
+		  d3.select(button).on("click", change);
+
+		  function change() {
+		    // xMax = d3.max(data, function(d) { return d[xCat]; }) * 1.03;
+		    // xMin = d3.min(data, function(d) { return d[xCat]; }) * 0.97;
+
+		    zoomBeh.x(x.domain([xMin, xMax])).y(y.domain([yMin, yMax]));
+
+		    var svg = d3.select(element).transition();
+
+		    svg.select(".x.axis").duration(750).call(xAxis).select(".label").text(xlab);
+
+		    objects.selectAll(".dot").transition().duration(1000).attr("transform", transform);
+		  };
+
+		  function zoom() {
+		    svg.select(".x.axis").call(xAxis);
+		    svg.select(".y.axis").call(yAxis);
+
+		    svg.selectAll(".dot")
+		        .attr("transform", transform);
+		  };
+
+		  function transform(d) {
+		    return "translate(" + x(d[xCat]) + "," + y(d[yCat]) + ")";
+		  };
+	};
+
+	// default to open candidate view
+	function candidate_scale(){
+  		document.getElementById("candidate_rescale").click();
+	};
+  	function senator_scale(){
+  		document.getElementById("senator_rescale").click();
+  	};
+
+	// swap buttons when clicked
+  	function ShowHide(id) {
+  		if ($(id).html() == "Show") {
+    		$(id).html("Hide");
+  		} else {
+    		$(id).html("Show");
+  			}
+		};
+
+
+	// Function to apply/remove the state filter when users want to see their local candidates/senators
+	function filterTable(table_element, state, column_idx){
+		var table = $(table_element).DataTable()
+		table.column(column_idx).search(state).draw();
+	};
+
+	function removeTableFilter(table_element, column_idx){
+		var table = $(table_element).DataTable();
+		table.column(column_idx).search('').draw();
+	};
+// };
+
+</script>
+</body>
+
+</html>

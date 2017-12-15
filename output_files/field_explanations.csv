@@ -1,0 +1,45 @@
+Column Name,Description,Add'l Description 1,Add'l Description 2,Add'l Description 3
+candidate,Name with space,,,
+full_name,Name with underscore,,,
+year,Year running,,,
+url_name,accessible url at ontheissues.org,,,
+votes,actual vote number,,,
+winner,actual winner of race,binary,,
+%_votes_state,actual percentage votes,,,
+1,Abortion is a woman's unrestricted right,Social,"-5 = Strong Liberal Lean, -2.5 = Liberal Lean, 0 = Neutral or no data, 2.5 = Conservative Lean, 5 = Strong Conservative Lean",Agree = Liberal
+2,Legally require hiring women & minorities,Economic,"-5 = Strong Liberal Lean, -2.5 = Liberal Lean, 0 = Neutral or no data, 2.5 = Conservative Lean, 5 = Strong Conservative Lean",Agree = Liberal
+3,Comfortable with same-sex marriage,Social,"-5 = Strong Liberal Lean, -2.5 = Liberal Lean, 0 = Neutral or no data, 2.5 = Conservative Lean, 5 = Strong Conservative Lean",Agree = Liberal
+4,Keep God in the public sphere,Social,"-5 = Strong Liberal Lean, -2.5 = Liberal Lean, 0 = Neutral or no data, 2.5 = Conservative Lean, 5 = Strong Conservative Lean",Agree = Conservative
+5,Expand ObamaCare,Economic,"-5 = Strong Liberal Lean, -2.5 = Liberal Lean, 0 = Neutral or no data, 2.5 = Conservative Lean, 5 = Strong Conservative Lean",Agree = Liberal
+6,Privatize Social Security,Economic,"-5 = Strong Liberal Lean, -2.5 = Liberal Lean, 0 = Neutral or no data, 2.5 = Conservative Lean, 5 = Strong Conservative Lean",Agree = Conservative
+7,Vouchers for school choice,Economic,"-5 = Strong Liberal Lean, -2.5 = Liberal Lean, 0 = Neutral or no data, 2.5 = Conservative Lean, 5 = Strong Conservative Lean",Agree = Conservative
+8,Society bears cost of pollution,Social,"-5 = Strong Liberal Lean, -2.5 = Liberal Lean, 0 = Neutral or no data, 2.5 = Conservative Lean, 5 = Strong Conservative Lean",Agree = Conservative
+9,Stricter punishment reduces crime,Social,"-5 = Strong Liberal Lean, -2.5 = Liberal Lean, 0 = Neutral or no data, 2.5 = Conservative Lean, 5 = Strong Conservative Lean",Agree = Conservative
+10,Absolute right to gun ownership,Economic,"-5 = Strong Liberal Lean, -2.5 = Liberal Lean, 0 = Neutral or no data, 2.5 = Conservative Lean, 5 = Strong Conservative Lean",Agree = Conservative
+11,Higher taxes on the wealthy,Economic,"-5 = Strong Liberal Lean, -2.5 = Liberal Lean, 0 = Neutral or no data, 2.5 = Conservative Lean, 5 = Strong Conservative Lean",Agree = Liberal
+12,Pathway to citizenship for illegal aliens,Social,"-5 = Strong Liberal Lean, -2.5 = Liberal Lean, 0 = Neutral or no data, 2.5 = Conservative Lean, 5 = Strong Conservative Lean",Agree = Liberal
+13,Support & expand free trade,Economic,"-5 = Strong Liberal Lean, -2.5 = Liberal Lean, 0 = Neutral or no data, 2.5 = Conservative Lean, 5 = Strong Conservative Lean",Agree = Conservative
+14,Support American Exceptionalism,Economic,"-5 = Strong Liberal Lean, -2.5 = Liberal Lean, 0 = Neutral or no data, 2.5 = Conservative Lean, 5 = Strong Conservative Lean",Agree = Conservative
+15,Expand the military,Social,"-5 = Strong Liberal Lean, -2.5 = Liberal Lean, 0 = Neutral or no data, 2.5 = Conservative Lean, 5 = Strong Conservative Lean",Agree = Conservative
+16,Make voter registration easier,Social,"-5 = Strong Liberal Lean, -2.5 = Liberal Lean, 0 = Neutral or no data, 2.5 = Conservative Lean, 5 = Strong Conservative Lean",Agree = Liberal
+17,Avoid foreign entanglements,Social,"-5 = Strong Liberal Lean, -2.5 = Liberal Lean, 0 = Neutral or no data, 2.5 = Conservative Lean, 5 = Strong Conservative Lean",Agree = Liberal
+18,Prioritize green energy,Economic,"-5 = Strong Liberal Lean, -2.5 = Liberal Lean, 0 = Neutral or no data, 2.5 = Conservative Lean, 5 = Strong Conservative Lean",Agree = Liberal
+19,Marijuana is a gateway drug,Social,"-5 = Strong Liberal Lean, -2.5 = Liberal Lean, 0 = Neutral or no data, 2.5 = Conservative Lean, 5 = Strong Conservative Lean",Agree = Conservative
+20,Stimulus better than market-led recovery,Economic,"-5 = Strong Liberal Lean, -2.5 = Liberal Lean, 0 = Neutral or no data, 2.5 = Conservative Lean, 5 = Strong Conservative Lean",Agree = Liberal
+incumbent,was the candidate an incumbent,binary,,
+social,total social category score,,,
+economic,total economic category score,,,
+party,"party abbrev (for Dem, Rep, Indep, Libertarian, Other)",,,
+x_pca,pca score in x direction,trained on 2016 actual senators (not candidates),,
+y_pca,pca score in y direction,trained on 2016 actual senators (not candidates),,
+8_clusters,cluster grouping for 8-cluster k-means,trained on 2016 actual senators (not candidates),,
+state,state abbrev,,,
+state_full,state name,,,
+pred,predicted vote %,,,
+error,error to actual vote %,,,
+winner_pred,predicted to win state,binary,,
+is_correct,correct prediction,binary,,
+battleground,top candidate predicted at <70% probability,binary,,
+relative_marginalchange_impact,"relative to other states, win probability impact of increasing a candidate's predicted vote share",closer predicted races have higher impact,,
+relative_impact_voters,"relative to other states, relative impact of a single extra vote (based on inverse eligible state voters)",lower population states have higher impact,,
+relative_impact_donation,relative_marginalchange_impact*relative_impact_voters,relative influence of donation (impact of close predicted race * inverse of eligible voter population),,

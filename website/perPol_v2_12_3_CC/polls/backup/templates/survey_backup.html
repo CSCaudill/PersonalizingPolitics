@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<style>
+		html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
+		.mySlides {display:none}
+		.w3-tag, .fa {cursor:pointer}
+		.w3-tag {height:15px;width:15px;padding:0;margin-top:6px}
+
+		* {
+		    box-sizing: border-box;
+		}
+		.header {
+			padding:15px;
+
+		}
+
+		.row::after {
+		    content: "";
+		    clear: both;
+		    display: table;
+		}
+		[class*="col-"] {
+		    float: left;
+		    padding: 15px;
+		}
+		.col-topic {width: 30%; 
+		            font-size: 18px;
+		            font-weight: bold;
+		          }
+		.col-select {width: 14%; 
+		             font-size: 15px;
+		           }
+
+	</style>
+	<body>
+		<div class="w3-content" style="max-width:1400px;margin-top:80px;margin-bottom:80px">
+			<div class="header">
+			  <h1>Personalizing Politics</h1>
+			  <h3>Provide your stance on the topics below to obtain your personalized analysis.</h3>
+			</div>
+			
+			<form action="{% url 'polls:vote' %}" method="post">
+			{% csrf_token %}
+				{% for question in latest_question_list %}
+						<div class="row">
+						<div class="col-topic">
+							<label>{{ question.question_text }}</label>
+						</div>
+						{% for choice in question.choice_set.all %}
+							<div class="col-select">
+							    <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
+							    <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br />
+							</div>
+							{% endfor %}
+						</div>
+				{% endfor %}
+			<input type="submit" value="Vote" />
+			</form>
+
+		</div>
+	</body>
+</html>

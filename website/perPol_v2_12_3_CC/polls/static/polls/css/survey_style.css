@@ -1,0 +1,100 @@
+
+html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
+.mySlides {display:none}
+.w3-tag, .fa {cursor:pointer}
+.w3-tag {height:15px;width:15px;padding:0;margin-top:6px}
+
+* {
+    box-sizing: border-box;
+}
+
+/*.header img {
+    padding-top: 42px;
+    padding-right: 20px;
+    padding-bottom: 0px;
+    padding-left: 20px;
+}*/
+
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+[class*="col-"] {
+    float: left;
+    padding: 15px;
+}
+.col-topic {width: 33%;
+            font-size: 18px;
+            font-weight: bold;
+            border-top: 1px solid #ccc;
+          }
+
+.col-dropdown {width: 60%;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: left;
+            border-top: 1px solid #ccc;
+          }
+
+.col-select {
+            width: 13%;
+            /*width: 130px;*/
+            font-size: 16px;
+            padding: 10px 0;
+            border-top: 1px solid #ccc;
+            font-weight: bold;
+            /*color: #404040;*/
+           }
+
+table{
+    font-family: "Lato", sans-serif
+
+}
+
+hr{
+    margin-top: 0px;
+    border-top: 1px solid #3d3d3d;
+}
+
+.survey-general {
+    margin: auto;
+    width: 100%;
+    border: 5px solid;
+    padding: 10px;
+    background-color: white;
+}
+
+.button-middle {
+    text-align: center
+}
+
+
+
+
+
+
+/*.styled-select {
+   height: 29px;
+   overflow: hidden;
+   width: 240px;
+}
+
+.styled-select select {
+   background: transparent;
+   border: none;
+   font-size: 14px;
+   height: 29px;
+   padding: 5px;  If you add too much padding here, the options won't show in IE 
+   width: 268px;
+}
+
+.semi-square {
+   -webkit-border-radius: 5px;
+   -moz-border-radius: 5px;
+   border-radius: 5px;
+}
+
+.blue    { background-color: #3b8ec2; }
+
+.blue select    { color: #fff; }*/

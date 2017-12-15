@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+    <!-- Load static folder link and css -->
+	{% load static %}
+	<title>Survey</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'polls/css/main_style.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'polls/css/survey_style.css' %}" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar" id="myNavbar">
+    <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <a href="/home/" class="w3-bar-item w3-button"><img src="../../static/polls/images/small_header.png" alt="logo" /></a>
+    <a href="/home/survey" class="w3-bar-item w3-button w3-large"><i class="fa fa-bicycle"></i> GET STARTED</a>
+    <a href="/home/explanation" class="w3-bar-item w3-button w3-large"><i class="fa fa-gears"></i> HOW IT WORKS</a>
+    <a href="/home/#contact" class="w3-bar-item w3-button w3-large"><i class="fa fa-envelope"></i> CONTACT</a>
+  </div>
+
+  <!-- Navbar on small screens -->
+  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
+    <a href="/home/survey" class="w3-bar-item w3-button" onclick="toggleFunction()">GET STARTED</a>
+    <a href="/home/explanation" class="w3-bar-item w3-button" onclick="toggleFunction()">HOW IT WORKS</a>
+    <a href="home/#contact" class="w3-bar-item w3-button" onclick="toggleFunction()">CONTACT</a>
+  </div>
+</div>
+
+<style>
+/* Create a Parallax Effect */
+.bgimg-survey {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-top: 70px solid white;
+    border-bottom: 100px solid black;
+}
+
+/* First image (Logo. Full height) */
+.bgimg-survey {
+    background-image: url('../../static/polls/images/yourvoiceyourvote.jpg');
+    min-height: 100%;
+    max-height: 100%;
+}
+
+/* Turn off parallax scrolling for tablets and phones */
+@media only screen and (max-device-width: 1024px) {
+    .bgimg-survey {
+        background-attachment: scroll;
+    }
+}
+
+
+.body-bkgrd {
+    background-image: url('../../static/polls/images/vote-banner.png');
+    background-repeat: repeat;
+}
+
+</style>
+
+<!-- Third Parallax Image with Portfolio Text -->
+<div class="bgimg-survey w3-opacity-min">
+  <div class="w3-display-middle">
+     <span class="w3-xxlarge w3-text-white w3-wide">SURVEY</span>
+  </div>
+</div>
+
+	<body>
+	<div class="w3-content w3-container w3-padding-64" id="about">
+		<h3 class="w3-center">INDICATE YOUR LEVEL OF AGREEMENT WITH THE FOLLOWING TOPICS</h3>
+		<p><i>We use your survey responses to give a personalized analysis and matchup to 2016 candidates and senators. This leverages standard VoteMatch questions developed and tracked by <a href="http://www.ontheissues.org/VoteMatch/candidate_map.asp?a1=2&a2=3&a3=1&a4=3&a9=5&a16=2&a10=1&a5=2&a7=4&a8=1&a14=5&a15=1&a17=1&a19=4&a18=5&a6=4&a20=1&a11=4&a12=5&a13=5&i1=1&i2=1&i3=1&i4=1&p=75&e=83&t=25" target="_blank">ontheissues.org</a>.</i></p>
+		<p><i>For additional guidance on how to fill out this survey, see our <a href="/home/questions/" target="_blank">explanation here</a>.</i></p>
+			  {% if error_message %}<p><strong><h2>{{ error_message }}</h2></strong></p>{% endif %}
+	</div>
+
+	<div class="body-bkgrd w3-opacity-min">
+
+		<br>
+		<div class="w3-content" style="max-width:1400px;margin-top:80px;margin-bottom:80px">
+
+			<div class="survey-general">
+				{% for field in form %}
+				    <form action="/home/vote/" method="post">
+				    	{% csrf_token %}
+				        <div class="row">
+				            <div class="col-topic">
+				                {{ field.label_tag }}
+				                <a target="_blank" href='/home/questions#{{ field.name }}'>
+									<img src="../../static/polls/images/1024px-Infobox_info_icon.svg.png" alt="more info" width=20 height=20 />
+								</a>
+				            </div>
+
+				            <!-- State Selection Question -->
+				            <!-- Formatting is different for the state selection -->
+				            {% if field.label == 'Select your state' %}
+								<div class='col-dropdown'>
+									<select name="state_select">
+										{% for choice in field %}				
+											{{choice}}
+										{% endfor %}
+									</select>
+								</div>
+				            {% endif %}
+
+				            <!-- Topic Questions -->
+				            {% if field.label != 'Select your state' %}
+					            {% for choice in field %}
+					                <div class="col-select">
+					                   {{ choice }}
+					                </div>
+					            {% endfor %}
+					        {% endif %}
+				        </div>
+				    
+				{% endfor %}
+
+				<div class="button-middle">
+					<br>
+					<input id="submit-btn" class="w3-btn w3-block w3-blue" type="submit" value="Vote!" />
+				</div>
+			</form>
+		</div>
+		</div>
+</div>
+
+<footer class="w3-center w3-black w3-padding-64">
+  <a href="#" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+</footer>
+
+<script>
+
+// Change style of navbar on scroll
+window.onscroll = function() {myFunction()};
+function myFunction() {
+    var navbar = document.getElementById("myNavbar");
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+        navbar.className = "w3-bar" + " w3-card" + " w3-animate-top" + " w3-white";
+    } else {
+        navbar.className = navbar.className.replace(" w3-card w3-animate-top w3-white", "");
+    }
+}
+
+// Used to toggle the menu on small screens when clicking on the menu button
+function toggleFunction() {
+    var x = document.getElementById("navDemo");
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+    } else {
+        x.className = x.className.replace(" w3-show", "");
+    }
+}
+</script>
+
+	</body>
+
+</html>

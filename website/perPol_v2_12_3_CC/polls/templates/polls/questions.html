@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+
+
+
+<html>
+
+<!-- Load static folder link and css -->
+{% load static %}
+
+<title>Personalizing Politics</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="../../static/polls/css/main_style.css" />
+
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar" id="myNavbar">
+    <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <a href="/home/" class="w3-bar-item w3-button"><img src="../../static/polls/images/small_header.png" alt="logo" /></a>
+    <a href="/home/survey" class="w3-bar-item w3-button w3-large"><i class="fa fa-bicycle"></i> GET STARTED</a>
+    <a href="/home/explanation" class="w3-bar-item w3-button w3-large"><i class="fa fa-gears"></i> HOW IT WORKS</a>
+    <a href="/home/#contact" class="w3-bar-item w3-button w3-large"><i class="fa fa-envelope"></i> CONTACT</a>
+  </div>
+
+  <!-- Navbar on small screens -->
+  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
+    <a href="/home/survey" class="w3-bar-item w3-button" onclick="toggleFunction()">GET STARTED</a>
+    <a href="/home/explanation" class="w3-bar-item w3-button" onclick="toggleFunction()">HOW IT WORKS</a>
+    <a href="home/#contact" class="w3-bar-item w3-button" onclick="toggleFunction()">CONTACT</a>
+  </div>
+</div>
+
+<!-- Content -->
+<div class="w3-content" style="max-width:1100px;margin-top:80px;margin-bottom:80px">
+
+  <div class="w3-panel">
+    <br>
+    <h1><b>MIDS Capstone Fall 2017</b></h1>
+  </div>
+
+  <!-- General Philosophy -->
+    <div class="w3-row w3-container" id="philosophy">
+      <div class="w3-center w3-padding-64">
+        <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">General Survey Philosophy</span>
+      </div>
+      <p>An <b>agree/support</b> position indicates that you support the statement, and a <b>disagree/oppose</b> position indicates that you disagree with the statement. A <b>neutral</b> opinion indicates either an in-between stance or an undecided view.</p>
+      <p>The difference between a <b>strongly agree</b> and an <b>agree</b> (or <b>strongly disagree</b> and <b>disagree</b>) positions is that the strong position indicates that you feel the statement is true/false without exception, that you support the ideology, and that the methods to achieve the goal are not important. The <b>agree/disagree</b> stance means that you support/oppose the statement for practical reasons, but that the "how" by which the goal is achieved is important.</p>
+      <p>The survey question set is a standardized set of 20 VoteMatch questions developed and maintained by <a href="http://www.ontheissues.org/default.htm" target="_blank">ontheissues.org</a>. Our analysis leverages these questions and the corresponding viewpoints for year 2016 senators and Senate candidates. Furthermore, the "Position Cliff Notes" on agreement/opposition are also taken directly from <a href="http://www.ontheissues.org/VoteMatch" target="_blank">ontheissues.org/VoteMatch</a>. We have added some additional "Background" for additional context on each VoteMatch question.</p>
+    </div>
+
+<!-- abortion_select -->
+  <div class="w3-row w3-container" id="abortion_select">
+    <div class="w3-center w3-padding-64">
+      <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">Abortion is a woman's unrestricted right</span>
+    </div>
+    <p><b>Position Cliff Notes</b></p>
+    <p><b>Strongly Support</b>: Women have the right to choose what happens to their bodies</p>
+    <p><b>Support</b>: Abortions will occur anyway so we should make them safe</p>
+    <p><b>Oppose</b>: More limitations are appropriate to make abortions rarer</p>
+    <p><b>Strongly Oppose</b>: Abortions violates a fetus' right to life</p>
+    <p><b>Background</b></p>
+    <p>Abortion is the conscious choice to end a human pregnancy, typically occuring during the first 28 weeks of pregnancy. As a full term pregnancy is approximately 40 weeks, so the babies, called fetuses, are usually not developed enough at this point to be able to survive on their own.</p>
+    <p>There are two main sides on this topic: pro-life and pro-choice. People who support pro-life believe that fetuses have the same rights as any other human, and that termination of a pregnancy may be the equivalent of killing a person. People who support pro-choice believe that a woman has rights to her own body, including the ability to choose whether or not to be pregnant.</p>
+    <p>There are many intricacies tied to this issue, including questions of whether abortion should be a considered a method of contraception, what to do in the case of rape, risk to the mother/child's life, stem cell research, fetal viability, and who should be able to decide whether abortion is appropriate or not.</p>
+    <p>For more information, go to <a href="http://www.ontheissues.org/VoteMatch/q1_2016.asp" target="_blank">ontheissues.org</a>.</p>
+  </div>
+
+  <!-- hiring_select -->
+    <div class="w3-row w3-container" id="hiring_select">
+      <div class="w3-center w3-padding-64">
+        <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">Legally require hiring more women & minorities</span>
+      </div>
+      <p><b>Position Cliff Notes</b></p>
+      <p><b>Strongly Support</b>: Affirmative action is needed. Until minorities, such as women and African Americans, are proportionally represented at all levels of the economy and the workplace, we need to help them achieve this. Government should actively enforce Affirmative Action laws in private companies.</p>
+      <p><b>Support</b>: There are benefits to diversity in the workplace. Diversity should be encouraged, and perhaps minorities should be favored, but putting strict quotas on hiring is unnecessary. Nevertheless, the government should prosecute companies which discriminate against women and minorities.</p>
+      <p><b>Oppose</b>: Some practical reforms are needed, and all quotas should be phased out. Affirmative Action is a noble idea, but should not be enforced by government. Government should enforce an end to racial prejudice, period.</p>
+      <p><b>Strongly Oppose</b>: Affirmative action violates racist principles and is reverse discrimination; instead of preventing discrimination against minorities, it now discriminates against other groups in the community.  Affirmative Action is better described as Reverse Discrimination. Quotas based on race and gender are wrong, whichever race or gender they favor. Under-represented groups should fend for themselves without government intervention.</p>
+      <p><b>Background</b></p>
+      <p>Affirmative action is used to describe legislation that supports required hiring of sex/gender and/or ethnic minorities. The purpose of affirmative action is to help support groups that were previously suppressed through historic discrimination, making it difficult for these groups to participate fully in economic and social prosperity. The opposition to affirmative action believes that this policy is reverse discrimination, penalizing previously favored groups in place of the groups they might have previously suppressed. Title IX, which prevents discrimination on the basis of sex in any education program or activity receiving Federal financial assistance,  is an example of affirmative action.</p>
+      <p>For more information, go to <a href="http://www.ontheissues.org/VoteMatch/q2_2016.asp" target="_blank">ontheissues.org</a>.</p>
+    </div>
+
+    <!-- marriage_select -->
+      <div class="w3-row w3-container" id="marriage_select">
+        <div class="w3-center w3-padding-64">
+          <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">Comfortable with same-sex marriage</span>
+        </div>
+        <p><b>Position Cliff Notes</b></p>
+        <p><b>Strongly Support</b>: Equality regardless of sexual orientation is a right. No one has the right to decide the sexual preferences of another. Same-sex partners should have equal status to and rights as heterosexual partners.</p>
+        <p><b>Support</b>: There are practical improvements that can be made toward civil rights for gays.  Homosexuals should be treated with equal respect as other members of society, not treated as criminals. While same-sex partners should have most or all of the same benefits as heterosexual marriage partners, civil unions are preferable to using the term 'marriage.'</p>
+        <p><b>Oppose</b>: Society should restrict gay rights in order to foster family development.  Homosexuality is a lifestyle choice, and therefore those who choose it should live by the consequences of their choice. Marriage between a man and a woman is the central institution of American society - we shouldn't do anything that perverts that concept or threatens that ideal.</p>
+        <p><b>Strongly Oppose</b>: Homosexuality is immoral. The 'Gay Agenda' seeks to normalize homosexual activity and make it part of the mainstream as 'just another lifestyle.' We must draw the line so that homosexual values are not imposed upon our children.</p>
+        <p><b>Background</b></p>
+        <p>There are two linked issues tied into this statement. The first is whether homosexuality is moral and the extent to which the government should or should not support it. The second is whether non-traditional families (i.e. families without a mother and father) are detrimental to American culture and future generations.</p>
+        <p>For more information, go to <a href="http://www.ontheissues.org/VoteMatch/q3_2016.asp" target="_blank">ontheissues.org</a>.</p>
+      </div>
+
+
+    <!-- god_select -->
+      <div class="w3-row w3-container" id="god_select">
+        <div class="w3-center w3-padding-64">
+          <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">Keep God in the public sphere</span>
+        </div>
+        <p><b>Position Cliff Notes</b></p>
+        <p><b>Strongly Support</b>: Religious institutions can and should be involved in welfare or education. Judeo-Christian values are American values. Belief in God is what America was founded upon, so tax-funding religious organizations, or praying in school, does not violate the separation of church and state. Displaying the Ten Commandments is appropriate because they are the moral basis for Western law. The Pledge of Allegiance should continue to include the phrase "Under God."</p>
+        <p><b>Support</b>: Religious institutions are better equipped than government to help with charitable causes and education. We need to teach values in our schools and account for our religious values in providing social services. The more our children are exposed to prayer, the Ten Commandments, and other traditional values, the better off they are.</p>
+        <p><b>Oppose</b>:  Government oversight is needed for practical reasons of effectiveness or full inclusiveness. Faith-based organizations and prayer in schools are inappropriate because they fail to recognize American pluralism and religious diversity.</p>
+        <p><b>Strongly Oppose</b>: Church-state separation prevents the involvement of religious institutions in social services. Separation of church and state precludes allowing school prayer, or providing funding for religious organizations. It also prohibits other aspects of religion in government buildings, such as posting the Ten Commandments in public places. We should not violate the Constitutional principle in this case.</p>
+        <p><b>Background</b></p>
+        <p>Freedom to practice religion is a reason why many immigrants came to America, and one of America's first principles was the separation of church and state. Most early immigrants, though, celebrated different branches of Judeo-Christianity, and these values formed the basis of core American values and traditions. In addition, as the government continues to decrease spending on welfare programs, religious organizations are being prevailed on to support the less fortunate. Previous legislation attempted to increase welfare by reducing the tax burden on religious organizations and donors.</p>
+        <p>For more information, go to <a href="http://www.ontheissues.org/VoteMatch/q4_2016.asp" target="_blank">ontheissues.org</a>.</p>
+      </div>
+
+    <!-- obamacare_select -->
+      <div class="w3-row w3-container" id="obamacare_select">
+        <div class="w3-center w3-padding-64">
+          <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">Expand ObamaCare</span>
+        </div>
+        <p><b>Position Cliff Notes</b></p>
+        <p><b>Strongly Support</b>: The government should make funds available for more complete coverage or should expand existing government-run coverage to all citizens. A single-payer system would solve most healthcare problems.</p>
+        <p><b>Support</b>: Practical progress toward universal health coverage is needed to provide for at-risk groups such as children and the elderly. Society benefits when more people are covered. Universal health insurance is a good goal, although some market methods can work as well as government systems.</p>
+        <p><b>Oppose</b>: While more thorough health coverage is a noble idea, further health coverage should be promoted through non-government means.</p>
+        <p><b>Strongly Oppose</b>: The government should not be involved with providing healthcare. Nationalized health care would entail a government takeover of a large portion of the economy and undue intrusions into our personal medical histories.</p>
+        <p><b>Background</b></p>
+        <p>The introduction of the Patient Protection and Affordable Care Act, otherwise known as Obamacare, required that all citizens be covered by medical insurance at affordable prices. Many first world countries, such as those in Europe, use a universal health care system to provide healthcare for their entire population and protects them against the high cost of unexpected medical events. However, these countries can sometimes also have long wait times for voluntary procedures. Other solutions have been offered instead of universal health care as a possibility to expand medical coverage, such as cross-state purchasing, small business pooling, and tort reform. One of the core questions behind this issues is whether the government can require that all citizens purchase medical insurance.</p>
+        <p>For more information, go to <a href="http://www.ontheissues.org/VoteMatch/q5_2016.asp" target="_blank">ontheissues.org</a>.</p>
+      </div>
+
+    <!-- socialsec_select -->
+      <div class="w3-row w3-container" id="socialsec_select">
+        <div class="w3-center w3-padding-64">
+          <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">Privatize Social Security</span>
+        </div>
+        <p><b>Position Cliff Notes</b></p>
+        <p><b>Strongly Support</b>: We own our own retirement funding. Our retirement funds should not be entrusted to the government. The entire Social Security system should be run similar to how we currently run IRAs, Keogh plans, 401(k)'s, and other private pension plans.</p>
+        <p><b>Support</b>: Practical progress towards market-based retirement funding is needed. The Trust Fund might be invested in the stock market or via some other private investment vehicle. Individuals should be given at least some control over how their retirement funds are invested.</p>
+        <p><b>Oppose</b>: Social Security should remain under federal control, but practical reforms on how the Trust Fund is handled are needed. In particular, the `Lockbox Bill' is a good first reform, since it keeps the system secure while avoiding privatization.</p>
+        <p><b>Strongly Oppose</b>: Government involvement in retirement funding should not be replaced by private entities. Social Security should remain forever under federal control to ensure that all Americans have a secure retirement. The Trust Fund should not be invested in anything like the stock market because that would introduce undue risk.</p>
+        <p><b>Background</b></p>
+        <p>The Trust Fund is used to describe the government's fund for retirement. As the Baby Boomers age, there is an expected increase in the number of retired people, and there is concern that the current methods of building funds will be unable to support the retired population. One of the previous methods of conserving funds has been to raise the retirement age, but even that may not be enough to support the country's growing retired population.</p>
+        <p>For more information, go to <a href="http://www.ontheissues.org/VoteMatch/q6_2016.asp" target="_blank">ontheissues.org</a>.</p>
+      </div>
+
+    <!-- vouchers_select -->
+      <div class="w3-row w3-container" id="vouchers_select">
+        <div class="w3-center w3-padding-64">
+          <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">Vouchers for school choice</span>
+        </div>
+        <p><b>Position Cliff Notes</b></p>
+        <p><b>Strongly Support</b>: The government should have a limited role in schooling. The government should not be in the business of running schools. State-funded vouchers should pay for privately-run education at private schools, parochial schools, charter schools, home-schooling, or whatever schools parents choose. Bush's "No Child Left Behind" act sets the stage for terminating failing schools.</p>
+        <p><b>Support</b>: School choice is necessary for practical reasons of improving education. School choice helps the poor who would otherwise be stuck in failing schools. Why should only the elite be able to afford private school? Subsidize parents' school choices to foster equality, as long as the school respects separation of church and state, and meets basic state standards. Charter schools are a good compromise.</p>
+        <p><b>Oppose</b>: Improvements could be made by focusing on public school improvements. Continue experimenting with charter schools, and with public school choice, but only as a limited experiment, and no vouchers. We should create pressure to improve our public schools, not abandon them. Bush's "No Child Left Behind" act is an unfunded mandate.</p>
+        <p><b>Strongly Oppose</b>: Public schools are an important component of American society. Improve public schools rather than destroying them with vouchers. More teachers, smaller classes, more funding - then parents will choose public schools.</p>
+        <p><b>Background</b></p>
+        <p>School districts may allow parents to decide to which of its school to send their children to. This issue is a question of whether government education allocations should be allowed to be diverted to other educational options, such as private schools, parochial schools, and home schooling. Proponents argue that vouchers will allow the best of the best to succeed by automatically weeding out weaker schools, while opponents argue that we should improve the system that we already have instead of supporting educational options that are already funded.</p>
+        <p>For more information, go to <a href="http://www.ontheissues.org/VoteMatch/q7_2016.asp" target="_blank">ontheissues.org</a>.</p>
+      </div>
+
+    <!-- pollution_select -->
+      <div class="w3-row w3-container" id="pollution_select">
+        <div class="w3-center w3-padding-64">
+          <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">EPA regulations are too restrictive</span>
+        </div>
+        <p><b>Position Cliff Notes</b></p>
+        <p><b>Strongly Support</b>: The earth is humankind's domain to do with as we see fit.</p>
+        <p><b>Support</b>: Human needs should be prioritized, but this can be accomplished with respect for nature.</p>
+        <p><b>Oppose</b>: We are share this Earth and should take care of it. We should balance animal rights with human needs, accounting for nature's value for humans as well as for other environmental benefits.</p>
+        <p><b>Strongly Oppose</b>: Animals have inherent rights, and nature has inherent value. Morality (rather than sustainability) is the rationale for environmental action. </p>
+        <p><b>Background</b></p>
+        <p>There are a number of environmental issues attached to this statement, including pollution control, endangered species and environmental conservation, clean energy, and conservation easements. Pollution control, including the Clean Air Act and Clean Water Act, regulate how much pollution can be emitted. Regulation of fuel economy is also considered an example of pollution control. There are some concerns that the benefits of such regulation do not outweigh the cost of regulation. Conservation easements are land deeds that restrict the future usages of that land in order to meet conservation goals, usually by protecting the habitat and/or banning hunting, logging, or development.</p>
+        <p>For more information, go to <a href="http://www.ontheissues.org/VoteMatch/q8_2016.asp" target="_blank">ontheissues.org</a>.</p>
+      </div>
+
+    <!-- punishment_select -->
+      <div class="w3-row w3-container" id="punishment_select">
+        <div class="w3-center w3-padding-64">
+          <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">Stricter punishment reduces crime</span>
+        </div>
+        <p><b>Position Cliff Notes</b></p>
+        <p><b>Strongly Support</b>: Punishment is the purpose of incarceration. 'Three Strikes' laws put dangerous repeat offenders where they belong - behind bars, for life. And the Death Penalty gets rid of them once and for all. Mandatory sentencing and strict enforcement make sure that judges don't let off criminals too easily.</p>
+        <p><b>Support</b>: Keep death penalty and 'Three Strikes' laws on the books because they seem to be effective, but we should consider ways to deal with special circumstances to avoid horror stories of inappropriate imprisonment.</p>
+        <p><b>Oppose</b>: Strict enforcement of pre-determined sentencing threatens civil rights and should be used cautiously. Police, courts and prisons should focus on effective enforcement rather than strict enforcement. The death penalty should be used with extreme caution, if at all.</p>
+        <p><b>Strongly Oppose</b>: Rehabilitation is the purpose of incarceration. Judicial discretion should not be diminished by formulaic sentencing like 'Three Strikes.' Let judges and juries decide what penalties to apply in each case. The death penalty should be abolished as "cruel and unusual punishment".</p>
+        <p><b>Background</b></p>
+        <p>The core behind this statement is how to prevent crime on our streets. One opinion is that removing criminals from the streets, no matter the infraction, prevents and discourages crime. Another opinion is that criminals should be removed from the streets, but they can be rehabilitated into productive citizens depending on the circumstances and severity of the crime(s) committed.</p>
+        <p>For more information, go to <a href="http://www.ontheissues.org/VoteMatch/q9_2016.asp" target="_blank">ontheissues.org</a>.</p>
+      </div>
+
+
+    <!-- gun_select -->
+      <div class="w3-row w3-container" id="gun_select">
+        <div class="w3-center w3-padding-64">
+          <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">Absolute right to gun ownership</span>
+        </div>
+        <p><b>Position Cliff Notes</b></p>
+        <p><b>Strongly Support</b>: The right to bear arms is a basic Constitutional right and expresses the democratic principle of self-defense against tyrannical government. Leave gun rights as they are.</p>
+        <p><b>Support</b>: Gun ownership should not be restricted - most gun owners use them safely and responsibly. To reduce gun-related crimes, address the moral problems of society and other issues.</p>
+        <p><b>Oppose</b>: The only "gun right" is to self-defense against criminals and the right to a secure home and a secure person. Tighten registration rules to prevent people who should not have access from getting them, such as children, and to limit what kind of firearms are available on the market.</p>
+        <p><b>Strongly Oppose</b>: The Second Amendment does not apply to individuals. More guns mean more killing. Limit availability of guns by whatever means are effective. The 2nd amendment does not mean an unlimited right to any and all firearms.</p>
+        <p><b>Background</b></p>
+        <p>Gun control has been an increasingly visible issue as mass shootings in schools and public venues are increasingly communicated in media. Preventing these mass killings and other gun-related crime is the objective of many individuals, though the method of how to achieve this goal is highly contested. Legislation requiring background checks, proper gun storage (e.g. with child safety locks or gun safes) suggest that responsible gun owners should be allowed to have guns, and that responsible gun owners can improve safety for their families and for society. Others believe that if all guns were removed from the streets, the world would be a safer place. Perhaps complicating matters is the interpretation of the Second Amendment, which gives Americans the right to bear arms.</p>
+        <p>For more information, go to <a href="http://www.ontheissues.org/VoteMatch/q10_2016.asp" target="_blank">ontheissues.org</a>.</p>
+      </div>
+
+    <!-- tax_select -->
+      <div class="w3-row w3-container" id="tax_select">
+        <div class="w3-center w3-padding-64">
+          <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">Higher taxes on the wealthy</span>
+        </div>
+        <p><b>Position Cliff Notes</b></p>
+        <p><b>Strongly Support</b>: Redistribution of wealth is a proper role of government. A progressive income tax is one of the cornerstones of modern society. Its premise is that the wealthy contribute proportionally more than those with lower incomes.</p>
+        <p><b>Support</b>: There is a practical societal need for a progressive tax system. Flatter taxes benefit the wealthy more than the lower and middle class. We should focus tax relief on the majority of taxpayers instead of on the richest few percent, while preserving important deductions like mortgage interest and charitable donations.</p>
+        <p><b>Oppose</b>: There are practical benefits of a simplified flat tax system. A Flat Tax would simplify the entire tax system. It would get rid of loopholes that drive tax-avoiding behaviors and would remove most deductions and the special interests that come with them. In the meantime, tax cuts benefit the economy in both good and bad economic times.</p>
+        <p><b>Strongly Oppose</b>: Ideally, the income tax and the IRS should be abolished. Perhaps a national sales tax, like the FairTax, is a good replacement. Lower and flatter taxes are a good first step.</p>
+        <p><b>Background</b></p>
+        <p>This statement refers to how citizens' income should be taxed. There are several proposed plans, most prominent of which are progressive income tax and a flat tax plan. A progressive income tax means that the more income you make, the higher percentage you should pay in taxes. The reasoning is that the wealthy have more money, and therefore, can afford to pay more taxes while maintaining a good standard of living. The flat tax income plan means that everyone pays the same rate of taxes, with the reasoning that people who are successful are not unfairly penalized for being so.</p>
+        <p>For more information, go to <a href="http://www.ontheissues.org/VoteMatch/q11_2016.asp" target="_blank">ontheissues.org</a>.</p>
+      </div>
+
+    <!-- pathway_select -->
+      <div class="w3-row w3-container" id="pathway_select">
+        <div class="w3-center w3-padding-64">
+          <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">Pathway to citizenship for illegal aliens</span>
+        </div>
+        <p><b>Position Cliff Notes</b></p>
+        <p><b>Strongly Support</b>: U.S. immigration laws should be reformed to increase our diversity and cultural tolerance. Social services should be offered to all residents of the U.S. regardless of immigration status. Illegal aliens should be offered amnesty if they prove themselves as productive members of society.</p>
+        <p><b>Support</b>: Illegal aliens are not criminals. The government should not make many restrictions on immigration. Illegal immigration can be deterred through other means like establishing an immigration fee or changing the immigration quotas by some other method.</p>
+        <p><b>Oppose</b>: Maintain legal immigration while enforcing against illegal immigration. We need to slow or stop the influx of immigrants so that we can focus on our own domestic problems.</p>
+        <p><b>Strongly Oppose</b>: Illegal aliens are criminals. We should strictly enforce our immigration laws by increasing border patrols, and crack down on illegal immigrants already in the U.S. by deportation and by removing all their social benefits. In the long run, we should decrease immigration.</p>
+        <p><b>Background</b></p>
+        <p>Over 50% of illegal immigrants come from Mexico, and we spend quite a bit of resources on patrolling our Southern border. Proponents of a pathway to citizenship believe that immigration is good for the country as long as immigrants a productive contributors. Opponents believe that illegal immigration should not be used as shortcut to bypass existing legal immigrants in line for citizenship.</p>
+        <p>For more information, go to <a href="http://www.ontheissues.org/VoteMatch/q12_2016.asp" target="_blank">ontheissues.org</a>.</p>
+      </div>
+
+    <!-- trade_select -->
+      <div class="w3-row w3-container" id="trade_select">
+        <div class="w3-center w3-padding-64">
+          <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">Support & expand free trade</span>
+        </div>
+        <p><b>Position Cliff Notes</b></p>
+        <p><b>Strongly Support</b>: Free trade is always in the people's interest. We should have open trade with every country in the world. The government has no right to make restrictions on imports or exports. NAFTA, GATT, and the WTO should be expanded and made less restrictive over time. Globalization is good.</p>
+        <p><b>Support</b>: Free trade is in our national interest because it provides economic growth and jobs. We should only restrict free trade when it poses a security risk. Including environmental and labor safeguards are acceptable if they can be successfully negotiated into trade agreements, but should not be used as a pretext to stop trade agreements.</p>
+        <p><b>Oppose</b>: Free Trade should be replaced by Fair Trade. Free trade is not in our national interest when it poses a risk to job security, causes humanitarian problems overseas, or results in environmental damage. Globalization should focus on benefiting people instead of benefiting multinational corporations.</p>
+        <p><b>Strongly Oppose</b>: Americans should buy from other Americans because that creates American jobs. We should restrict trade with any country which costs us jobs or which creates a trade deficit. Globalization is just another means of corporate influence over our society.</p>
+        <p><b>Background</b></p>
+        <p>Free trade is a principle that we should be able to import and export goods with any country without taxes or tariffs, potentially allowing countries to focus on areas of comparative competitive advantage for consumer benefit. Implementing free trade reduces costs because companies can build and trade at the cheapest price point. The term "fair trade" is the principle that we should do trade with countries without compromising human rights or the environment. In addition, "fair trade" advocates argue that free trade puts domestic jobs at risk.</p>
+        <p>For more information, go to <a href="http://www.ontheissues.org/VoteMatch/q13_2016.asp" target="_blank">ontheissues.org</a>.</p>
+      </div>
+
+    <!-- exceptionalism_select -->
+      <div class="w3-row w3-container" id="exceptionalism_select">
+        <div class="w3-center w3-padding-64">
+          <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">Support American Exceptionalism</span>
+        </div>
+        <p><b>Position Cliff Notes</b></p>
+        <p><b>Strongly Support</b>: America's national interests should always be our priority.</p>
+        <p><b>Support</b>: In general, the U.S. should consider her own national interests first, and then act with other nations in accordance with those interests.</p>
+        <p><b>Oppose</b>: We can best advance U.S. interests by building alliances and working with other countries on mutual interests. Multilateralism is more effective than unilateralism.</p>
+        <p><b>Strongly Oppose</b>: The U.S. should work with other countries because it's the right thing to do. We should not throw our weight around, but should use "soft power" and seek other non-military solutions.</p>
+        <p><b>Background</b></p>
+        <p>American Exceptionalism is a term used to describe the U.S. having a unique status in the world. The U.S. is a global power, but American Exceptionalism supports U.S.-focused isolationism, promoting the country's interests over those of the rest of the world.</p>
+        <p>For more information, go to <a href="http://www.ontheissues.org/VoteMatch/q14_2016.asp" target="_blank">ontheissues.org</a>.</p>
+      </div>
+
+
+    <!-- military_select -->
+      <div class="w3-row w3-container" id="military_select">
+        <div class="w3-center w3-padding-64">
+          <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">Expand the military</span>
+        </div>
+        <p><b>Position Cliff Notes</b></p>
+        <p><b>Strongly Support</b>: We have an obligation as the leaders of the world to maintain a strong military. And we have an obligation to our service personnel to pay them adequately.</p>
+        <p><b>Support</b>: We need to continue military spending to keep up with national security requirements. We should consider carefully before making more cuts - for example, base closings have hurt local economies, and reducing military personnel has put pressure on employment.</p>
+        <p><b>Oppose</b>: Military funding could be put to better use like social programs or other domestic spending. We should cut back on troops stationed abroad and focus on quality of our troops instead of quantity.</p>
+        <p><b>Strongly Oppose</b>: An overly-large U.S. military hurts our security interests by making enemies abroad and destroying our economy in the long run. We should change our Defense policy to one of defense, instead of one where we police the world. Pull U.S. troops out of foreign placements.</p>
+        <p><b>Background</b></p>
+        <p>Defense spending rapidly increased after 9/11 and also resulted in prolonged military placement in the Middle East. Some feel that this is part of our obligation as global leaders, while others feel that this prolonged military placement has made the U.S. more of a target. </p>
+        <p>For more information, go to <a href="http://www.ontheissues.org/VoteMatch/q15_2016.asp" target="_blank">ontheissues.org</a>.</p>
+      </div>
+
+    <!-- registration_select -->
+      <div class="w3-row w3-container" id="registration_select">
+        <div class="w3-center w3-padding-64">
+          <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">Make voter registration easier</span>
+        </div>
+        <p><b>Position Cliff Notes</b></p>
+        <p><b>Strongly Support</b>: Voter ID laws are racist and intended to suppress minority voting; we should focus on enforcement of right to vote, not enforcement against voters. Only money from individual voters or public funding should be used for funding campaigns.</p>
+        <p><b>Support</b>: Voter ID laws just make it harder for people to vote, and we should work to make it EASIER to vote. Restrictions on campaign finance and/or partial public funding, is a practical means to reduce undue political influence.</p>
+        <p><b>Oppose</b>: ID requirements for voting are reasonable. Some practical reforms are needed, but the basic system of privately financing political campaigns is acceptable. Politicians will always find loopholes in any campaign finance reform, so the best approach is to monitor campaigns for lawbreaking and leave the rest to the press. Better reporting of donations would be useful. </p>
+        <p><b>Strongly Oppose</b>: Voter fraud undermines the most fundamental process of democracy by suppressing voting of certain groups. The principle of free speech applies to political campaign donations.</p>
+        <p><b>Background</b></p>
+        <p>There are two main issues tied into this statement. First, whether voting ID laws are appropriate. Voting fraud is when votes are cast by ineligible voters or cast more than one vote and is a serious abuse of our current voting system. Proponents have promoted voting ID laws as a method of ensuring that voters are eligible to vote. On the other side, voter ID laws tend to turn away a disproportionate amount of certain ethnicities, leading to potential disproportionate suppression of certain groups of individuals. There is concern that voting ID laws are a front for suppressing voters who may be against certain parties.</p>
+        <p>The second issue is who should be able to finance campaigns. There is a fear that big companies and lobbyists can contribute a lot of money to campaigns in their interest. Due to this financial firepower, candidates who get support are better able to fund advertising and media campaigns, but are beholden to these lobbyists, even if the special interests run contrary to the needs and interests of the community. Opponents argue that political contributions are an example of the right to free speech and that limiting these contributions restricts the free speech rights of these pooled interest groups.</p>
+        <p>For more information, go to <a href="http://www.ontheissues.org/VoteMatch/q16_2016.asp" target="_blank">ontheissues.org</a>.</p>
+      </div>
+
+    <!-- foreign_select -->
+      <div class="w3-row w3-container" id="foreign_select">
+        <div class="w3-center w3-padding-64">
+          <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">Avoid foreign entanglements</span>
+        </div>
+        <p><b>Position Cliff Notes</b></p>
+        <p><b>Strongly Support</b>: Pre-emptive war is not needed. If we overextend ourselves overseas, we will fall in the manner that all empires fall. The U.S. never should have invaded Iraq, and we should learn from that experience.</p>
+        <p><b>Support</b>: There are practical reasons for avoiding war: they are expensive and cost lives, and we often don't achieve the intended goal.</p>
+        <p><b>Oppose</b>: There are serious practical uses of American military force for clearly-defined objectives. Those objectives include protecting our interests as a means to an end, such as securing oil supply by promoting stability in Iran and Iraq.</p>
+        <p><b>Strongly Oppose</b>: The U.S. should take military action abroad when we determine our national interest is threatened. We should pre-emptively go to war if it means protecting ourselves and our interests.</p>
+        <p><b>Background</b></p>
+        <p>The U.S. has been involved in many prolonged military placements, the most recent memorable placement being in Afghanistan. Opponents of pre-emptive war believe that such prolonged military engagements waste U.S. lives and that we should focus on domestic problems before extending ourselves overseas. Proponents believe that pre-emptive war can be used as a deterrent to protect our interests. Maintaining a strong military means that we are prepared to protect American interests abroad at any time.</p>
+        <p>For more information, go to <a href="http://www.ontheissues.org/VoteMatch/q17_2016.asp" target="_blank">ontheissues.org</a>.</p>
+      </div>
+
+    <!-- green_select -->
+      <div class="w3-row w3-container" id="green_select">
+        <div class="w3-center w3-padding-64">
+          <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">Prioritize green energy</span>
+        </div>
+        <p><b>Position Cliff Notes</b></p>
+        <p><b>Strongly Support</b>: The earth has limited resources. Overuse of fossil fuels causes serious problems that we should deal with immediately. Some interventions include raising carbon taxes, raising fuel economy standards, federally funding research into alternative and sustainable energy resources, and push to implement the Kyoto Protocol.</p>
+        <p><b>Support</b>: There are practical reasons for reducing our carbon usage, such as U.S. technological competitiveness or reducing the risks of global warming. The Kyoto Protocol should require developing countries' participation to make the solution work, not pushing for unrealistic goals.</p>
+        <p><b>Oppose</b>: The cost of dealing with global warming is far higher than the potential damage. There's some evidence for global warming, but the effects are not certain. We could sign on to some international agreements, but should limit commitments for now.</p>
+        <p><b>Strongly Oppose</b>: Global warming is false or an exaggerated scare-mongering tactic. There's no such thing as global warming - it's all natural climatic variation. If there is a problem, we can deal with the problems as they arise.</p>
+        <p><b>Background</b></p>
+        <p>This question largely ties to global warming. Global warming is the argument that humans have caused unnatural shifts in the environment. These shifts may cause irreversible problems for ourselves or future generations if we do not change our behaviors now. However, it is also argued that there is not conclusive proof of what the impact of global warming will be or if what we are calling global warming is just a natural shift that we have not been long enough on Earth to understand.</p>
+        <p>For more information, go to <a href="http://www.ontheissues.org/VoteMatch/q18_2016.asp" target="_blank">ontheissues.org</a>.</p>
+      </div>
+
+    <!-- marijuana_select -->
+      <div class="w3-row w3-container" id="marijuana_select">
+        <div class="w3-center w3-padding-64">
+          <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">Marijuana is a gateway drug</span>
+        </div>
+        <p><b>Position Cliff Notes</b></p>
+        <p><b>Strongly Support</b>: Drug use in wrong in principle, and drug users should be punished. Drug use poisons our youth and society. We should fight the Drug War using all reasonable means.</p>
+        <p><b>Support</b>: Society will benefit from reducing drug use. The Drug War is winnable if we invest enough resources. We should do whatever we have to do: More police, more border patrols, more intervention abroad, more prison terms, more prisons.</p>
+        <p><b>Oppose</b>: The practical benefits of reduced restrictions are outweighed by the costs of incarceration. We should have regulated decriminalization. Our drug policy should be reformed less focus on punishment and more efforts toward rehabilitation.</p>
+        <p><b>Strongly Oppose</b>: Individuals should be able to make their own decisions on recreational drug use. Ending the Drug War it now like we ended alcohol Prohibition, and organized crime and drug-related crime will decrease like it did when Prohibition ended.</p>
+        <p><b>Background</b></p>
+        <p>The Drug War refers the enforcement of illegal drug use, such as heroin and marijuana. Several states have already legalized marijuana, choosing to treat the drug more like tobacco. Legalization allows monies coming from the regulation of "softer" drugs to be used to patrol and prevent usage of illegal drugs as well as other community needs. In addition, taxes on drugs can serve as a deterrent to drug use. Critics warn that legalizing "softer" drugs is a slippery slope, and that it encourages drug use by making it permissible and more readily available.</p>
+        <p>For more information, go to <a href="http://www.ontheissues.org/VoteMatch/q19_2016.asp" target="_blank">ontheissues.org</a>.</p>
+      </div>
+
+    <!-- stimulus_select -->
+      <div class="w3-row w3-container" id="stimulus_select">
+        <div class="w3-center w3-padding-64">
+          <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">Stimulus better than market-led recovery</span>
+        </div>
+        <p><b>Position Cliff Notes</b></p>
+        <p><b>Strongly Support</b>: The federal government should inject as much funding as needed to recuperate from the Great Recession, including direct federal job creation. Nationalization of banks and companies is more appropriate than bailouts.</p>
+        <p><b>Support</b>: Government oversight is needed for practical reasons: the Great Recession is a big enough cause, but most others aren't. The federal government should institute incentives for private corporations for more hiring, to recuperate from the Great Recession. Funding to "bail out" private companies should be accompanied by rules for corporate behavior and repayment.</p>
+        <p><b>Oppose</b>: There are practical reasons for lower taxation and deregulation - to quickly increase hiring. Cutting taxes and reducing regulation is the means to recuperate from the Great Recession.</p>
+        <p><b>Strongly Oppose</b>: The federal government caused the Great Recession, and keeping out of the economy will end it.</p>
+        <p><b>Background</b></p>
+        <p>The Great Recession, in this case, refers to the slow down of the economy beginning in 2008. This was precipitated by the subprime mortgage crisis, where the housing bubble burst and a high number of individuals that had previously been able to pay their loans began to default on housing loans. During this period, a number of people lost their houses and a large portion of their retirement savings while bank CEOs continued to receive huge bonuses. The federal government stepped in to "bailout" the banks in order to protect citizens from losing everything, but many people feel that banks were not sufficiently punished for allowing the situation to progress so far. Furthermore, this issue hinges on how much government intervention should be needed in order to help the economy recover. Proponents of increased government spending argue that it helps lead the way out of a recession more quickly. Opponents argue that the economy is naturally cyclical, and that a somewhat quicker recovery is not worth the additional costs</p>
+        <p>For more information, go to <a href="http://www.ontheissues.org/VoteMatch/q20_2016.asp" target="_blank">ontheissues.org</a>.</p>
+      </div>
+
+      <!-- state_select -->
+        <div class="w3-row w3-container" id="state_select">
+          <div class="w3-center w3-padding-64">
+            <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">State Selection</span>
+          </div>
+          <p>Choose your state of interest. We use this information in order to filter your results, but you'll still be able to see information for all states.</p>
+        </div>
+  </div>
+
+<!-- Footer -->
+<footer class="w3-center w3-black w3-padding-64">
+  <a href="#" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+</footer>
+
+<script>
+
+// Change style of navbar on scroll
+window.onscroll = function() {myFunction()};
+function myFunction() {
+    var navbar = document.getElementById("myNavbar");
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+        navbar.className = "w3-bar" + " w3-card" + " w3-animate-top" + " w3-white";
+    } else {
+        navbar.className = navbar.className.replace(" w3-card w3-animate-top w3-white", "");
+    }
+}
+
+// Used to toggle the menu on small screens when clicking on the menu button
+function toggleFunction() {
+    var x = document.getElementById("navDemo");
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+    } else {
+        x.className = x.className.replace(" w3-show", "");
+    }
+}
+</script>
+
+</body>
+</html>

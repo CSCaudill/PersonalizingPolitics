@@ -1,0 +1,109 @@
+
+html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
+.w3-tag {cursor:pointer}
+.w3-tag {height:15px;width:15px;padding:0;margin-top:6px}
+
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
+body, html {
+    height: 100%;
+    /*color: #777;*/
+    line-height: 1.8;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/*.header img {
+    padding-top: 42px;
+    padding-right: 20px;
+    padding-bottom: 0px;
+    padding-left: 20px;
+}*/
+
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+[class*="col-"] {
+    float: left;
+    padding: 15px;
+}
+.col-topic {width: 40%;
+            font-size: 18px;
+            font-weight: bold;
+            border-top: 1px solid #ccc;
+          }
+
+.col-dropdown {width: 60%;
+            font-size: 12px;
+            font-weight: bold;
+            border-top: 1px solid #ccc;
+          }
+
+.col-select {
+            width: 12%;
+            /*width: 130px;*/
+            font-size: 13px;
+            padding: 18px 0;
+            border-top: 1px solid #ccc;
+           }
+
+table{
+    font-family: "Lato", sans-serif
+
+}
+
+hr{
+    margin-top: 0px;
+    border-top: 1px solid #3d3d3d;
+}
+
+.survey-general {
+    margin: auto;
+    width: 80%;
+    border: 3px solid;
+    padding: 10px;
+}
+
+.button-middle {
+    text-align: center
+}
+
+/* Create a Parallax Effect */
+.bgimg-1, .bgimg-2, .bgimg-3 {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* First image (Logo. Full height) */
+.bgimg-1 {
+    background-image: url('../../static/polls/images/vote2.jpg');
+    min-height: 100%;
+}
+
+/* Second image (Portfolio) */
+.bgimg-2 {
+    background-image: url("../../static/polls/images/voting.jpg");
+    min-height: 400px;
+}
+
+/* Third image (Contact) */
+.bgimg-3 {
+    background-image: url("../../static/polls/images/burns.png");
+    min-height: 400px;
+}
+
+.w3-wide {letter-spacing: 10px;}
+.w3-hover-opacity {cursor: pointer;}
+
+/* Turn off parallax scrolling for tablets and phones */
+@media only screen and (max-device-width: 1024px) {
+    .bgimg-1, .bgimg-2, .bgimg-3 {
+        background-attachment: scroll;
+    }
+}
+

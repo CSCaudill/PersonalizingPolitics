@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+
+
+
+<html>
+
+<!-- Load static folder link and css -->
+{% load static %}
+
+<title>Personalizing Politics</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="{% static 'polls/css/index_style.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'polls/css/main_style.css' %}" />
+
+
+<!-- Links (sit on top) -->
+<!-- <div class="w3-top">
+  <div class="w3-row w3-large w3-white">
+    <div class="w3-col s3">
+        <a href="/home/" class="w3-button w3-block">
+        <img src="../../static/polls/images/header.PNG" alt="logo" /></a>
+    </div>
+    <div class="w3-col s3">
+        <a href="/home/survey" class="w3-button w3-block"><br>Get Started</a>
+    </div>
+    <div class="w3-col s3">
+      <a href="/home/explanation" class="w3-button w3-block"><br>How It Works</a>
+    </div>
+    <div class="w3-col s3">
+      <a href="/home/#contact" class="w3-button w3-block"><br>Contact</a>
+    </div>
+  </div>
+<hr>
+</div> -->
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar" id="myNavbar">
+    <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <a href="/home/" class="w3-bar-item w3-button"><img src="../../static/polls/images/small_header.png" alt="logo" /></a>
+    <a href="/home/survey" class="w3-bar-item w3-button w3-large"><i class="fa fa-bicycle"></i> GET STARTED</a>
+    <a href="/home/explanation" class="w3-bar-item w3-button w3-large"><i class="fa fa-gears"></i> HOW IT WORKS</a>
+    <a href="/home/#contact" class="w3-bar-item w3-button w3-large"><i class="fa fa-envelope"></i> CONTACT</a>
+  </div>
+
+  <!-- Navbar on small screens -->
+  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
+    <a href="/home/survey" class="w3-bar-item w3-button" onclick="toggleFunction()">GET STARTED</a>
+    <a href="/home/explanation" class="w3-bar-item w3-button" onclick="toggleFunction()">HOW IT WORKS</a>
+    <a href="home/#contact" class="w3-bar-item w3-button" onclick="toggleFunction()">CONTACT</a>
+  </div>
+</div>
+
+<!-- Content -->
+<div class="w3-content" style="max-width:1100px;margin-top:80px;margin-bottom:80px">
+
+  <div class="w3-panel">
+    <br>
+    <h1><b>How It Works</b></h1>
+  </div>
+
+  <!-- Motivation -->
+  <!-- Problem solving and for whom specifically, why is this import to solve, impact and potential impact, what's the mission -->
+  <div class="w3-row w3-container">
+    <div class="w3-center w3-padding-64">
+      <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">Motivation</span>
+    </div>
+
+      <p>Congressmen are the foundation of policy-making in our country, but only 60-70 percent of eligible voters turn out for presidential elections -- even less (about 40%) turn out for midterm elections. </p>
+
+      <p>Many of us sit and complain about the state of the country, so why aren't we more interested in getting the right people elected?</p>
+
+      <p>Congressmen aren't generally glamorous. Just like we talk about the CEO of a company, it's the employees who do the day-to-day work and determine the vision, not the CEO. We probably hear and know more about celebrities and what their political opinions than our local Congressional representative, so how can we elect someone to represent us if we don't even know who they are? </p>
+
+      <p> We are a group of data science students, and we believe that everyone can make a difference.</p>
+  </div>
+
+  <!-- Process -->
+    <!-- how and why does this provide the initial soltion, show/explain how MVP work/functionalities, what are the outputs? -->
+  <div class="w3-row w3-container">
+    <div class="w3-center w3-padding-64">
+      <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">Process</span>
+    </div>
+
+      <p>We believe that choosing a candidate to vote for involves a lot of factors. We want to choose someone who will represent us, taking our side and making the same decisions that we would ourselves. We consider this to be the primary deciding factor when selecting an acceptable candidate, annd we do this in the first part of the candidate discovery process: by asking users, every day people, to answer a survey about how they feel about key political issues. These questions surround many of the current societal and economic problems in the country.</p>
+
+      <p>Beyond figuring how well a candidate aligns with our views, we also think it can be important to consider how what everyone else will think of the candidate. Do the candidate have a good chance of winning? Voting for a candidate that matches all our views  but has almost no chance of winning may take votes away from an acceptable candidate that has a good shot at winning. Are we willing to bend on a few ideals in the hopes that we can have someone in office who supports the most important issues we care about? This is why we give you this information in your survey results page.</p>
+
+      <p>But we do believe that dark and gray horses <i>can and should</i>  win if their ideals match the views of the people they will represent. And each of us has the power to do something about it. In addition to providing a likelihood of winning, we also give our users a measurement of donation impact. How much further will your dollar (or vote!) go by supporting one candidate over another?</p>
+  </div>
+
+  <!-- Privacy -->
+  <div class="w3-row w3-container">
+    <div class="w3-center w3-padding-64">
+      <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">Privacy and Transparency</span>
+    </div>
+      <p>We understand that your political views are your own, and the information you provide in the survey is only stored while you are on the site. Once you navigate away, your information disappears.</p>
+
+      <p>It's important to us that you understand how your results are generated. We want you to be able to trust the results you get.</p>
+  </div>
+
+  <!-- Models, Analysis, and Tools -->
+    <!-- what are the inputs/data, data science/tech approach. highligh what's working well, key challenges/learnings -->
+  <div class="w3-row w3-container">
+    <div class="w3-center w3-padding-64">
+      <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">Models and Tools</span>
+    </div>
+
+      <p>Our models and metrics provide three main analyses to help you with your political discovery: (1) a comparison against candidate views on key topics, (2) an estimation of the likelihood of each candidate winning their race, and (3) derived metrics from the win likelihood model.</p>
+
+      <p><b> (1) Candidate view comparison </b></p>
+      <p>Answers to the survey are scored translated into evenly spaced rankings from -5 to 5. These questions are based on the same questions from ontheissues.org. Your answers are then compared to each candidate's answers. Ontheissues.org scored each of the same candidates based on their publicly expressed views and voting records. We compare your similarity to each of the candidate by calculating the Euclidean distance between your answers and each candidates. It's like drawing a straight line from point A to point B on the map, except in 20 different dimensions. We considered using other methods of calculation, but ultimately decided on Euclidean distance because we think you should be able to understand how results are calculated, not trust blindly in a black box. We calculate similarity based on three different categories: social, economic, and overall.</p>
+
+      <p>Perfect congruity between your answers and a candidate's answers gives a similarity score of 100%, and completely opposite answers gives a score of 0%. The overall similarity is presented in the candidate matching table, and your similarity to each candidate on the social and economic questions are shown as a scatterplot in the display on the right. You can also use the toggle switches to filter your results by your state, battleground states, current senators, or all candidates from 2016.</p>
+
+      <p>As a beta feature, we also provide you with an interactive heatmap of candidates. You can use the heatmap to determine whether candidates or senators are more liberal (blue) or conservative (red) for a given survey question as well as compare how different your values were from each candidate/senator. More similar views are green and more divergent views are red. We hope this gives you an idea of what the key topics you diverge and converge on with each candidate and senator. This is still a work-in-progress, but please feel free to give us feedback! We'd love to hear how we can make this site more useful to you!</p>
+
+      <p>One of the challenges we encountered was that survey questions required knowledge of each of the issues and were not readily accessible to the layperson. Questions could also be interpreted in several different ways. We have attempted to solve this issue by providing a brief description of all the issues as well as provide a outline what each level of response means. An additional challenge is that respondents also felt the method by which each candidate proposed to solve the issue was important. This is not immediately intuitive, but we encourage users to select agree or disagree as opposed to strongly agree or strongly disagree to demonstrate that the how matters.</p>
+
+      <p><b> (2) Candidate win likelihood model </b></p>
+      <p>Candidate win likelihood estimated based on a random forest model of the predicted vote share of each Congressional race. Vote share is the percentage of votes the candidate is predicted to get. For example, if a candidate is predicted to get 75% percent of the votes, we say that their vote share is 75%. Past results were acquired from townhall.com and used along with United States census data to predict heldout race outcomes.</p>
+
+      <p>A random forest model is an average of a set of decision trees. A decision tree is like a workflow, where at each step, you look at one parameter, and make a decision to do one of two options. At the end of the decision tree, you get a predicted value for an outcome. Decision trees are often used in real life. For example, when crossing a street, you might first check whether the light is green or not. Next, you might look both ways to see if there are any cars. Based on these two decision "steps," you get a predicted value of how likely you are to get hit by a car while crossing the street. When you base the predictions based on your past experiences, this is called training the model. Your choosing to cross the street after training the model is part of the validation set. You use the data that you predicted and then see if it's true in situations you did not use to train.</p>
+
+      <p>Using a decision tree when applied to the breadth of data we had (35 different attributes assessed) has some drawbacks. Decision trees are likely to overfit the training data, meaning if the validation data is not similar to training data, our predictions would not be very good. A random forest model adds variability to the training process by randomly subsetting the training data and parameters used to make each decision during the training process. This makes the model more generalizable.</p>
+
+      <p>We trained our model on 2012 and 2014 senate elections, and subsetted the 2016 elections into a validation and test set. Model prediction was quite good despite a small sample size. 29 of 34 races correctly predicted winners. We are still working on why those last 5 races were not predicted correctly and looking into whether other data sources needed to be combined to make our model better. The model predicted also predicted vote share well for the 81 candidates evaluated, with a mean absolute error of 8.0% and an RMSE of 11.3%.</p>
+
+      <p>After predicting the vote share for all candidates, we calculate the candidate's likelihood to win for the race they are in. The distance between the vote share between the top two candidates in each race is divided by the standard error of the prediction to get a standard score. We then calculate the likelihood of getting this standard score, which is what we call the win likelihood.
+
+      <p><b> (3) Derived metrics from win likelihood</b></p>
+
+      <p><i>Battleground state determination</i></p>
+      <p>If the win likelihood for a given race is less than 70%, we call that state a battleground state.</p>
+
+      <p><i>Donation impact factor</i></p>
+      <p>From our candidate win likelihood model, we calculate the change in win likelihood for a 0.01% change in vote share margin for the top two candidates. We then normalize this marginal change by the average marginal change impact for all candidates to get the relative change. Finally, we again normalize relative change to the state's population to determine the donation impact factor. We need to do this because in states with a higher population, it is more difficult to achieve 0.01% change due to the number of votes you would need to change. This final value is what we call the donation impact factor. It is a metric of the value of donating or voting in for a particular race compared to the average candidate. Due to the normalization, we consider a donation impact factor of 1 to be equivalent to an average donation, a value of 2 or higher to be a high impact, and a value of 0.5 or lower to be low impact.</p>
+
+      <p><b> Tools </b></p>
+      <p>Python was used for all modelling and calculation, and Django was used as the web framework. Our biggest struggle during this project was providing a useable interface to you. We're not web developers, so we hope that we've provided an intuitive resource for you.</p>
+  </div>
+
+  <!-- Roadmap for the Future -->
+  <!-- what hypothetical next steps/future improvements if you were to continue with project. if you had more time, what would be on your roadmap -->
+  <div class="w3-row w3-container">
+    <div class="w3-center w3-padding-64">
+      <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">Product Roadmap </span>
+    </div>
+
+      <p>We've got a lot of things that we would have loved to accomplish to round out the project, but we ran out of time! If we had more time, we'd focus on expanding our project and bringing the following into reality:</p>
+      <ul>
+        <li>Showing trends in public opinion on key issues over time</li>
+        <li>Showing how candidates views change over time and being able to grade their performance in office against their campaign promises</li>
+        <li>Providing more information about each candidate</li>
+        <li>Expanding our model into House of Representatives and even more local races</li>
+      </ul>
+
+    </div>
+</div>
+
+<!-- Footer -->
+
+<footer class="w3-center w3-black w3-padding-64">
+  <a href="#" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+</footer>
+
+<script>
+
+// Change style of navbar on scroll
+window.onscroll = function() {myFunction()};
+function myFunction() {
+    var navbar = document.getElementById("myNavbar");
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+        navbar.className = "w3-bar" + " w3-card" + " w3-animate-top" + " w3-white";
+    } else {
+        navbar.className = navbar.className.replace(" w3-card w3-animate-top w3-white", "");
+    }
+}
+
+// Used to toggle the menu on small screens when clicking on the menu button
+function toggleFunction() {
+    var x = document.getElementById("navDemo");
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+    } else {
+        x.className = x.className.replace(" w3-show", "");
+    }
+}
+</script>
+
+</body>
+</html>

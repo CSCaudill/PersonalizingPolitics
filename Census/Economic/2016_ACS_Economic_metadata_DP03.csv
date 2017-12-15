@@ -1,0 +1,140 @@
+GEO.id,Id
+GEO.id2,Id2
+GEO.display-label,Geography
+HC01_VC03,EMPLOYMENT STATUS - Population 16 years and over
+HC01_VC04,EMPLOYMENT STATUS - Population 16 years and over - In labor force
+HC01_VC05,EMPLOYMENT STATUS - Population 16 years and over - In labor force - Civilian labor force
+HC01_VC06,EMPLOYMENT STATUS - Population 16 years and over - In labor force - Civilian labor force - Employed
+HC01_VC07,EMPLOYMENT STATUS - Population 16 years and over - In labor force - Civilian labor force - Unemployed
+HC01_VC08,EMPLOYMENT STATUS - Population 16 years and over - In labor force - Armed Forces
+HC01_VC09,EMPLOYMENT STATUS - Population 16 years and over - Not in labor force
+HC01_VC11,EMPLOYMENT STATUS - Civilian labor force
+HC01_VC12,EMPLOYMENT STATUS - Civilian labor force - Unemployment Rate
+HC01_VC14,EMPLOYMENT STATUS - Females 16 years and over
+HC01_VC15,EMPLOYMENT STATUS - Females 16 years and over - In labor force
+HC01_VC16,EMPLOYMENT STATUS - Females 16 years and over - In labor force - Civilian labor force
+HC01_VC17,EMPLOYMENT STATUS - Females 16 years and over - In labor force - Civilian labor force - Employed
+HC01_VC19,EMPLOYMENT STATUS - Own children of the householder under 6 years
+HC01_VC20,EMPLOYMENT STATUS - Own children of the householder under 6 years - All parents in family in labor force
+HC01_VC22,EMPLOYMENT STATUS - Own children of the householder 6 to 17 years
+HC01_VC23,EMPLOYMENT STATUS - Own children of the householder 6 to 17 years - All parents in family in labor force
+HC01_VC27,COMMUTING TO WORK - Workers 16 years and over
+HC01_VC28,"COMMUTING TO WORK - Workers 16 years and over - Car, truck, or van -- drove alone"
+HC01_VC29,"COMMUTING TO WORK - Workers 16 years and over - Car, truck, or van -- carpooled"
+HC01_VC30,COMMUTING TO WORK - Workers 16 years and over - Public transportation (excluding taxicab)
+HC01_VC31,COMMUTING TO WORK - Workers 16 years and over - Walked
+HC01_VC32,COMMUTING TO WORK - Workers 16 years and over - Other means
+HC01_VC33,COMMUTING TO WORK - Workers 16 years and over - Worked at home
+HC01_VC36,COMMUTING TO WORK - Mean travel time to work (minutes)
+HC01_VC40,OCCUPATION - Civilian employed population 16 years and over
+HC01_VC41,"OCCUPATION - Civilian employed population 16 years and over - Management, business, science, and arts occupations"
+HC01_VC42,OCCUPATION - Civilian employed population 16 years and over - Service occupations
+HC01_VC43,OCCUPATION - Civilian employed population 16 years and over - Sales and office occupations
+HC01_VC44,"OCCUPATION - Civilian employed population 16 years and over - Natural resources, construction, and maintenance occupations"
+HC01_VC45,"OCCUPATION - Civilian employed population 16 years and over - Production, transportation, and material moving occupations"
+HC01_VC49,INDUSTRY - Civilian employed population 16 years and over
+HC01_VC50,"INDUSTRY - Civilian employed population 16 years and over - Agriculture, forestry, fishing and hunting, and mining"
+HC01_VC51,INDUSTRY - Civilian employed population 16 years and over - Construction
+HC01_VC52,INDUSTRY - Civilian employed population 16 years and over - Manufacturing
+HC01_VC53,INDUSTRY - Civilian employed population 16 years and over - Wholesale trade
+HC01_VC54,INDUSTRY - Civilian employed population 16 years and over - Retail trade
+HC01_VC55,"INDUSTRY - Civilian employed population 16 years and over - Transportation and warehousing, and utilities"
+HC01_VC56,INDUSTRY - Civilian employed population 16 years and over - Information
+HC01_VC57,"INDUSTRY - Civilian employed population 16 years and over - Finance and insurance, and real estate and rental and leasing"
+HC01_VC58,"INDUSTRY - Civilian employed population 16 years and over - Professional, scientific, and management, and administrative and waste management services"
+HC01_VC59,"INDUSTRY - Civilian employed population 16 years and over - Educational services, and health care and social assistance"
+HC01_VC60,"INDUSTRY - Civilian employed population 16 years and over - Arts, entertainment, and recreation, and accommodation and food services"
+HC01_VC61,"INDUSTRY - Civilian employed population 16 years and over - Other services, except public administration"
+HC01_VC62,INDUSTRY - Civilian employed population 16 years and over - Public administration
+HC01_VC66,CLASS OF WORKER - Civilian employed population 16 years and over
+HC01_VC67,CLASS OF WORKER - Civilian employed population 16 years and over - Private wage and salary workers
+HC01_VC68,CLASS OF WORKER - Civilian employed population 16 years and over - Government workers
+HC01_VC69,CLASS OF WORKER - Civilian employed population 16 years and over - Self-employed in own not incorporated business workers
+HC01_VC70,CLASS OF WORKER - Civilian employed population 16 years and over - Unpaid family workers
+HC01_VC74,INCOME AND BENEFITS (IN 2016 INFLATION-ADJUSTED DOLLARS) - Total households
+HC01_VC75,"INCOME AND BENEFITS (IN 2016 INFLATION-ADJUSTED DOLLARS) - Total households - Less than $10,000"
+HC01_VC76,"INCOME AND BENEFITS (IN 2016 INFLATION-ADJUSTED DOLLARS) - Total households - $10,000 to $14,999"
+HC01_VC77,"INCOME AND BENEFITS (IN 2016 INFLATION-ADJUSTED DOLLARS) - Total households - $15,000 to $24,999"
+HC01_VC78,"INCOME AND BENEFITS (IN 2016 INFLATION-ADJUSTED DOLLARS) - Total households - $25,000 to $34,999"
+HC01_VC79,"INCOME AND BENEFITS (IN 2016 INFLATION-ADJUSTED DOLLARS) - Total households - $35,000 to $49,999"
+HC01_VC80,"INCOME AND BENEFITS (IN 2016 INFLATION-ADJUSTED DOLLARS) - Total households - $50,000 to $74,999"
+HC01_VC81,"INCOME AND BENEFITS (IN 2016 INFLATION-ADJUSTED DOLLARS) - Total households - $75,000 to $99,999"
+HC01_VC82,"INCOME AND BENEFITS (IN 2016 INFLATION-ADJUSTED DOLLARS) - Total households - $100,000 to $149,999"
+HC01_VC83,"INCOME AND BENEFITS (IN 2016 INFLATION-ADJUSTED DOLLARS) - Total households - $150,000 to $199,999"
+HC01_VC84,"INCOME AND BENEFITS (IN 2016 INFLATION-ADJUSTED DOLLARS) - Total households - $200,000 or more"
+HC01_VC85,INCOME AND BENEFITS (IN 2016 INFLATION-ADJUSTED DOLLARS) - Total households - Median household income (dollars)
+HC01_VC86,INCOME AND BENEFITS (IN 2016 INFLATION-ADJUSTED DOLLARS) - Total households - Mean household income (dollars)
+HC01_VC89,INCOME AND BENEFITS (IN 2016 INFLATION-ADJUSTED DOLLARS) - With earnings
+HC01_VC90,INCOME AND BENEFITS (IN 2016 INFLATION-ADJUSTED DOLLARS) - With earnings - Mean earnings (dollars)
+HC01_VC91,INCOME AND BENEFITS (IN 2016 INFLATION-ADJUSTED DOLLARS) - With Social Security
+HC01_VC92,INCOME AND BENEFITS (IN 2016 INFLATION-ADJUSTED DOLLARS) - With Social Security - Mean Social Security income (dollars)
+HC01_VC93,INCOME AND BENEFITS (IN 2016 INFLATION-ADJUSTED DOLLARS) - With retirement income
+HC01_VC94,INCOME AND BENEFITS (IN 2016 INFLATION-ADJUSTED DOLLARS) - With retirement income - Mean retirement income (dollars)
+HC01_VC97,INCOME AND BENEFITS (IN 2016 INFLATION-ADJUSTED DOLLARS) - With Supplemental Security Income
+HC01_VC98,INCOME AND BENEFITS (IN 2016 INFLATION-ADJUSTED DOLLARS) - With Supplemental Security Income - Mean Supplemental Security Income (dollars)
+HC01_VC99,INCOME AND BENEFITS (IN 2016 INFLATION-ADJUSTED DOLLARS) - With cash public assistance income
+HC01_VC100,INCOME AND BENEFITS (IN 2016 INFLATION-ADJUSTED DOLLARS) - With cash public assistance income - Mean cash public assistance income (dollars)
+HC01_VC101,INCOME AND BENEFITS (IN 2016 INFLATION-ADJUSTED DOLLARS) - With Food Stamp/SNAP benefits in the past 12 months
+HC01_VC103,INCOME AND BENEFITS (IN 2016 INFLATION-ADJUSTED DOLLARS) - Families
+HC01_VC104,"INCOME AND BENEFITS (IN 2016 INFLATION-ADJUSTED DOLLARS) - Families - Less than $10,000"
+HC01_VC105,"INCOME AND BENEFITS (IN 2016 INFLATION-ADJUSTED DOLLARS) - Families - $10,000 to $14,999"
+HC01_VC106,"INCOME AND BENEFITS (IN 2016 INFLATION-ADJUSTED DOLLARS) - Families - $15,000 to $24,999"
+HC01_VC107,"INCOME AND BENEFITS (IN 2016 INFLATION-ADJUSTED DOLLARS) - Families - $25,000 to $34,999"
+HC01_VC108,"INCOME AND BENEFITS (IN 2016 INFLATION-ADJUSTED DOLLARS) - Families - $35,000 to $49,999"
+HC01_VC109,"INCOME AND BENEFITS (IN 2016 INFLATION-ADJUSTED DOLLARS) - Families - $50,000 to $74,999"
+HC01_VC110,"INCOME AND BENEFITS (IN 2016 INFLATION-ADJUSTED DOLLARS) - Families - $75,000 to $99,999"
+HC01_VC111,"INCOME AND BENEFITS (IN 2016 INFLATION-ADJUSTED DOLLARS) - Families - $100,000 to $149,999"
+HC01_VC112,"INCOME AND BENEFITS (IN 2016 INFLATION-ADJUSTED DOLLARS) - Families - $150,000 to $199,999"
+HC01_VC113,"INCOME AND BENEFITS (IN 2016 INFLATION-ADJUSTED DOLLARS) - Families - $200,000 or more"
+HC01_VC114,INCOME AND BENEFITS (IN 2016 INFLATION-ADJUSTED DOLLARS) - Families - Median family income (dollars)
+HC01_VC115,INCOME AND BENEFITS (IN 2016 INFLATION-ADJUSTED DOLLARS) - Families - Mean family income (dollars)
+HC01_VC118,INCOME AND BENEFITS (IN 2016 INFLATION-ADJUSTED DOLLARS) - Per capita income (dollars)
+HC01_VC120,INCOME AND BENEFITS (IN 2016 INFLATION-ADJUSTED DOLLARS) - Nonfamily households
+HC01_VC121,INCOME AND BENEFITS (IN 2016 INFLATION-ADJUSTED DOLLARS) - Nonfamily households - Median nonfamily income (dollars)
+HC01_VC122,INCOME AND BENEFITS (IN 2016 INFLATION-ADJUSTED DOLLARS) - Nonfamily households - Mean nonfamily income (dollars)
+HC01_VC124,INCOME AND BENEFITS (IN 2016 INFLATION-ADJUSTED DOLLARS) - Median earnings for workers (dollars)
+HC01_VC125,"INCOME AND BENEFITS (IN 2016 INFLATION-ADJUSTED DOLLARS) - Median earnings for male full-time, year-round workers (dollars)"
+HC01_VC126,"INCOME AND BENEFITS (IN 2016 INFLATION-ADJUSTED DOLLARS) - Median earnings for female full-time, year-round workers (dollars)"
+HC01_VC130,HEALTH INSURANCE COVERAGE - Civilian noninstitutionalized population
+HC01_VC131,HEALTH INSURANCE COVERAGE - Civilian noninstitutionalized population - With health insurance coverage
+HC01_VC132,HEALTH INSURANCE COVERAGE - Civilian noninstitutionalized population - With health insurance coverage - With private health insurance
+HC01_VC133,HEALTH INSURANCE COVERAGE - Civilian noninstitutionalized population - With health insurance coverage - With public coverage
+HC01_VC134,HEALTH INSURANCE COVERAGE - Civilian noninstitutionalized population - No health insurance coverage
+HC01_VC137,HEALTH INSURANCE COVERAGE - Civilian noninstitutionalized population under 18 years
+HC01_VC138,HEALTH INSURANCE COVERAGE - Civilian noninstitutionalized population under 18 years - No health insurance coverage
+HC01_VC141,HEALTH INSURANCE COVERAGE - Civilian noninstitutionalized population 18 to 64 years
+HC01_VC142,HEALTH INSURANCE COVERAGE - Civilian noninstitutionalized population 18 to 64 years - In labor force:
+HC01_VC143,HEALTH INSURANCE COVERAGE - Civilian noninstitutionalized population 18 to 64 years - In labor force: - Employed:
+HC01_VC144,HEALTH INSURANCE COVERAGE - Civilian noninstitutionalized population 18 to 64 years - In labor force: - Employed: - With health insurance coverage
+HC01_VC145,HEALTH INSURANCE COVERAGE - Civilian noninstitutionalized population 18 to 64 years - In labor force: - Employed: - With health insurance coverage - With private health insurance
+HC01_VC146,HEALTH INSURANCE COVERAGE - Civilian noninstitutionalized population 18 to 64 years - In labor force: - Employed: - With health insurance coverage - With public coverage
+HC01_VC147,HEALTH INSURANCE COVERAGE - Civilian noninstitutionalized population 18 to 64 years - In labor force: - Employed: - No health insurance coverage
+HC01_VC148,HEALTH INSURANCE COVERAGE - Civilian noninstitutionalized population 18 to 64 years - In labor force: - Unemployed:
+HC01_VC149,HEALTH INSURANCE COVERAGE - Civilian noninstitutionalized population 18 to 64 years - In labor force: - Unemployed: - With health insurance coverage
+HC01_VC150,HEALTH INSURANCE COVERAGE - Civilian noninstitutionalized population 18 to 64 years - In labor force: - Unemployed: - With health insurance coverage - With private health insurance
+HC01_VC151,HEALTH INSURANCE COVERAGE - Civilian noninstitutionalized population 18 to 64 years - In labor force: - Unemployed: - With health insurance coverage - With public coverage
+HC01_VC152,HEALTH INSURANCE COVERAGE - Civilian noninstitutionalized population 18 to 64 years - In labor force: - Unemployed: - No health insurance coverage
+HC01_VC153,HEALTH INSURANCE COVERAGE - Civilian noninstitutionalized population 18 to 64 years - Not in labor force:
+HC01_VC154,HEALTH INSURANCE COVERAGE - Civilian noninstitutionalized population 18 to 64 years - Not in labor force: - With health insurance coverage
+HC01_VC155,HEALTH INSURANCE COVERAGE - Civilian noninstitutionalized population 18 to 64 years - Not in labor force: - With health insurance coverage - With private health insurance
+HC01_VC156,HEALTH INSURANCE COVERAGE - Civilian noninstitutionalized population 18 to 64 years - Not in labor force: - With health insurance coverage - With public coverage
+HC01_VC157,HEALTH INSURANCE COVERAGE - Civilian noninstitutionalized population 18 to 64 years - Not in labor force: - No health insurance coverage
+HC01_VC161,PERCENTAGE OF FAMILIES AND PEOPLE WHOSE INCOME IN THE PAST 12 MONTHS IS BELOW THE POVERTY LEVEL - All families
+HC01_VC162,PERCENTAGE OF FAMILIES AND PEOPLE WHOSE INCOME IN THE PAST 12 MONTHS IS BELOW THE POVERTY LEVEL - All families - With related children of the householder under 18 years
+HC01_VC163,PERCENTAGE OF FAMILIES AND PEOPLE WHOSE INCOME IN THE PAST 12 MONTHS IS BELOW THE POVERTY LEVEL - All families - With related children of the householder under 18 years - With related children of the householder under 5 years only
+HC01_VC164,PERCENTAGE OF FAMILIES AND PEOPLE WHOSE INCOME IN THE PAST 12 MONTHS IS BELOW THE POVERTY LEVEL - Married couple families
+HC01_VC165,PERCENTAGE OF FAMILIES AND PEOPLE WHOSE INCOME IN THE PAST 12 MONTHS IS BELOW THE POVERTY LEVEL - Married couple families - With related children of the householder under 18 years
+HC01_VC166,PERCENTAGE OF FAMILIES AND PEOPLE WHOSE INCOME IN THE PAST 12 MONTHS IS BELOW THE POVERTY LEVEL - Married couple families - With related children of the householder under 18 years - With related children of the householder under 5 years only
+HC01_VC167,"PERCENTAGE OF FAMILIES AND PEOPLE WHOSE INCOME IN THE PAST 12 MONTHS IS BELOW THE POVERTY LEVEL - Families with female householder, no husband present"
+HC01_VC168,"PERCENTAGE OF FAMILIES AND PEOPLE WHOSE INCOME IN THE PAST 12 MONTHS IS BELOW THE POVERTY LEVEL - Families with female householder, no husband present - With related children of the householder under 18 years"
+HC01_VC169,"PERCENTAGE OF FAMILIES AND PEOPLE WHOSE INCOME IN THE PAST 12 MONTHS IS BELOW THE POVERTY LEVEL - Families with female householder, no husband present - With related children of the householder under 18 years - With related children of the householder under 5 years only"
+HC01_VC171,PERCENTAGE OF FAMILIES AND PEOPLE WHOSE INCOME IN THE PAST 12 MONTHS IS BELOW THE POVERTY LEVEL - All people
+HC01_VC172,PERCENTAGE OF FAMILIES AND PEOPLE WHOSE INCOME IN THE PAST 12 MONTHS IS BELOW THE POVERTY LEVEL - All people - Under 18 years
+HC01_VC173,PERCENTAGE OF FAMILIES AND PEOPLE WHOSE INCOME IN THE PAST 12 MONTHS IS BELOW THE POVERTY LEVEL - All people - Under 18 years - Related children of the householder under 18 years
+HC01_VC174,PERCENTAGE OF FAMILIES AND PEOPLE WHOSE INCOME IN THE PAST 12 MONTHS IS BELOW THE POVERTY LEVEL - All people - Under 18 years - Related children of the householder under 18 years - Related children of the householder under 5 years
+HC01_VC175,PERCENTAGE OF FAMILIES AND PEOPLE WHOSE INCOME IN THE PAST 12 MONTHS IS BELOW THE POVERTY LEVEL - All people - Under 18 years - Related children of the householder under 18 years - Related children of the householder 5 to 17 years
+HC01_VC176,PERCENTAGE OF FAMILIES AND PEOPLE WHOSE INCOME IN THE PAST 12 MONTHS IS BELOW THE POVERTY LEVEL - All people - 18 years and over
+HC01_VC177,PERCENTAGE OF FAMILIES AND PEOPLE WHOSE INCOME IN THE PAST 12 MONTHS IS BELOW THE POVERTY LEVEL - All people - 18 years and over - 18 to 64 years
+HC01_VC178,PERCENTAGE OF FAMILIES AND PEOPLE WHOSE INCOME IN THE PAST 12 MONTHS IS BELOW THE POVERTY LEVEL - All people - 18 years and over - 65 years and over
+HC01_VC179,PERCENTAGE OF FAMILIES AND PEOPLE WHOSE INCOME IN THE PAST 12 MONTHS IS BELOW THE POVERTY LEVEL - People in families
+HC01_VC180,PERCENTAGE OF FAMILIES AND PEOPLE WHOSE INCOME IN THE PAST 12 MONTHS IS BELOW THE POVERTY LEVEL - Unrelated individuals 15 years and over

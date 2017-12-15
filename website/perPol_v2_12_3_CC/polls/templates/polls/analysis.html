@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+    <!-- Load static folder link and css -->
+	{% load static %}
+	<title>Candidate Analysis</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<!-- JQuery 1.12.4-->
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+	<!-- DataTables 1.10.16-->
+	<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
+
+	<!-- D3.js v3-->
+	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+
+    <!-- Bootstrap 3.3.7 -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	<!-- Custom CSS -->
+	<!-- <link rel="stylesheet" type="text/css" href="{% static 'polls/css/main_style.css' %}" /> -->
+	<!-- <link rel="stylesheet" type="text/css" href="{% static 'polls/css/analysis_style.css' %}" /> -->
+	<link rel="stylesheet" type="text/css" href="../../static/polls/css/main_style.css" />
+	<link rel="stylesheet" type="text/css" href="../../static/polls/css/analysis_style.css" />
+
+    <style>
+      rect.bordered {
+        stroke: #E6E6E6;
+        stroke-width:2px;   
+      }
+      text.axis-workweek {
+        fill: #000;
+      }
+
+      text.axis-worktime {
+        fill: #000;
+      }
+    </style>
+
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar" id="myNavbar">
+    <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <a href="/home/" class="w3-bar-item w3-button"><img src="../../static/polls/images/small_header.png" alt="logo" /></a>
+    <a href="/home/survey" class="w3-bar-item w3-button w3-large"><i class="fa fa-bicycle"></i> GET STARTED</a>
+    <a href="/home/explanation" class="w3-bar-item w3-button w3-large"><i class="fa fa-gears"></i> HOW IT WORKS</a>
+    <a href="/home/#contact" class="w3-bar-item w3-button w3-large"><i class="fa fa-envelope"></i> CONTACT</a>
+  </div>
+
+  <!-- Navbar on small screens -->
+  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
+    <a href="/home/survey" class="w3-bar-item w3-button" onclick="toggleFunction()">GET STARTED</a>
+    <a href="/home/explanation" class="w3-bar-item w3-button" onclick="toggleFunction()">HOW IT WORKS</a>
+    <a href="home/#contact" class="w3-bar-item w3-button" onclick="toggleFunction()">CONTACT</a>
+  </div>
+</div>
+
+<body>
+
+	<div class=title_header>
+
+			<h3 class="w3-center"><font color='white'>PERSONALIZED RESULTS</font></h3>
+
+			<!-- buttons to apply/remove state filter -->
+			<button id="show_state" class="w3-button" onclick="renderPlot('Candidates', state_filter='{{ user_state|safe }}', data_to_view='NA', category='NA'); renderPlot('Senators', state_filter='{{ user_state|safe }}', data_to_view='NA', category='NA'); senator_scale(); candidate_scale(); filterTable('#candidate_table', '{{ user_state|safe }}', 3); filterTable('#senator_table', '{{ user_state|safe }}', 2);  $(this).hide(); $('#show_all').show()">Show My State Only</button>
+			<button id="show_all" class="w3-button" style="display: none;" onclick="renderPlot('Candidates', state_filter=null, data_to_view='NA', category='NA'); candidate_scale(); renderPlot('Senators', state_filter=null, data_to_view='NA', category='NA'); senator_scale(); removeTableFilter('#candidate_table', 3); removeTableFilter('#senator_table', 2); $(this).hide(); $('#show_state').show()">Show All States</button>
+
+		<!-- button and modal box to allow user to adjust their views -->
+		<button id='adjust_survey_button' onclick="document.getElementById('adjust_survey').style.display='block'" class="w3-button">Adjust Survey Responses</button>
+		<div id="adjust_survey" class="w3-modal">
+		    <div class="w3-modal-content">
+		    	<header class="w3-container w3-indigo"> 
+		        	<span onclick="document.getElementById('adjust_survey').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+		        	<h2>Adjust Survey Responses</h2>
+				</header>
+
+				<!-- form inside box -->
+				<div class="w3-container">
+        			<div class="survey-general">
+						{% for field in form %}
+						    <form action="/home/vote/" method="post">
+						    	{% csrf_token %}
+						        <div class="row">
+						            <div class="col-topic">
+						                {{ field.label_tag }}
+						                <a target="_blank" href='/home/questions#{{ field.name }}'>
+											<img src="../../static/polls/images/1024px-Infobox_info_icon.svg.png" alt="more info" width=20 height=20 />
+										</a>
+						            </div>
+
+						            <!-- Formatting is different for the state selection -->
+						            {% if field.label == 'Select your state' %}
+										<div class='col-dropdown'>
+											<select name="state_select">
+												{% for choice in field %}				
+													{{choice}}
+												{% endfor %}
+											</select>
+										</div>
+						            {% endif %}
+
+						            {% if field.label != 'Select your state' %}
+							            {% for choice in field %}
+							                <div class="col-select">
+							                   {{ choice }}
+							                </div>
+							            {% endfor %}
+							        {% endif %}
+						        </div>
+						    
+						{% endfor %}
+
+								<div class="button-middle">
+								<br>
+								<input id="submit-btn" class="w3-btn w3-block" type="submit" value="Vote!" />
+								</div>
+							</form>
+					</div>
+			    </div>
+			</div>
+		</div>
+		<br>
+	</div>
+
+
+	<!-- Create tabs to toggle between candidates and current senators-->
+	<div class="tab">
+	  <button class="tablinks" onclick="openTab(event, 'Candidates'); renderPlot('Candidates', state_filter='NA', data_to_view='NA', category='NA'); candidate_scale();" id='defaultOpen'>Click Here for Candidate Results</button>
+	  <button class="tablinks" onclick="openTab(event, 'Senators'); renderPlot('Senators', state_filter='NA', data_to_view='similarity', category='NA'); senator_scale();">Click Here for Senator Results</button>
+	</div>
+
+	<hr>
+
+	<!-- ############################# -->
+	<!-- Candidate Tab -->
+	<!-- ############################# -->
+
+	<div id="Candidates" class="tabcontent">
+
+		<!-- ############################# -->
+		<!-- left half of candidate tab -->
+		<!-- ############################# -->
+
+		<div class="table">
+			<div class="detail">
+				<h4>This table of candidates is initially sorted by those that align with your political views the most. You can re-sort based on any field to explore best and worst matches.</h4>
+				<h6>You can interact with this table in a number of ways. For instance, to sort by multiple, hold SHIFT and select the columns. Also, you can sse the search box to filter any of the fields. To learn more about a specific column, mouse over the column header for a short description. If you are still a bit unclear, check out the <a href="/home/explanation/">'How it Works'</a> page for a more detailed description of how we obtained these results.</h6>
+
+				<button onclick="document.getElementById('can_heatmap_box').style.display='block'; renderHeatMap(dataset='CandidateViews');" class="w3-button">View/Compare Candidate Views</button>
+				<div id="can_heatmap_box" class="w3-modal">
+				    <div class="w3-modal-content">
+				    	<header class="w3-container w3-indigo"> 
+				        	<span onclick="document.getElementById('can_heatmap_box').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+				        	<h2>Individual Candidate View Comparison</h2>
+						</header>
+						<div class="w3-container">
+							<div class='heatcontainer'>
+								<div class='heatmap_header'>
+									<div id='canView_text'>
+										<h4>In this visualization, you can get a more granular perspective of each candidate's political stance on each individual topic. The colors here represent the measurement of how <font color="#4169E1">liberal</font> or <font color="#e91640">conservative</font> each candidate's stance is on the respective topic. In this case, <font color="#e91640">darker red</font> indicates a more conservative viewpoint, whereas a <font color="#4169E1">darker blue</font> indicates a more liberal viewpoint.</h4>
+									</div>
+
+									<div id='canViewDiff_text' style='display: none;'>
+										<h4>In the heatmap below, your survey responses are being compared against each of the candidates. This view is intended to present you with a visual method of understanding where each candidate aligns with your views. As detailed in the legend to the right, <font color="#B22222">darker shades of red</font> indicate that the candidate has a <font color="#B22222">polar opposite stance</font> on that particular topic. Additionally, <font color="#2E8B57">darker shades of green</font> indicate that you are <font color="#2E8B57">completely aligned</font> on the given topic. Scroll through this list of alphabetically ordered candidates and find a candidate that fits best for you. Find the candidate that was indicated as the most similar to you, and see what topics you may not agree on.</h4>
+									</div>
+
+									<button onclick="renderHeatMap(dataset='CandidateViews'); document.getElementById('canView_text').style.display='block'; document.getElementById('canViewDiff_text').style.display='none'" class="w3-button">Display Candidate Views</button>
+									<button onclick="renderHeatMap(dataset='CandidateViewsDiff'); document.getElementById('canViewDiff_text').style.display='block'; document.getElementById('canView_text').style.display='none'" class="w3-button">Compare Against My Views</button>
+
+								</div>
+
+								<br>
+								<div id="dataset-picker"></div>
+								<div id="can_heatmap" class='w3-center heatviz'></div>
+							</div>
+					    </div>
+					</div>
+				</div>
+			</div>
+			<table id="candidate_table" class=display cellspacing="0" width="80%">
+			    <thead>
+			        <tr>
+			            <th>Candidate</th>
+			            <th data-toggle="tooltip" data-placement="top" title="Calculated percent that the candidate aligns with your views">Overall Similarity (%)</th>
+			            <th data-toggle="tooltip" data-placement="top" title="Calculated percent of probability to win election">Win Probability (%)</th>
+			            <th>State</th>
+			            <!-- <th>Year</th> -->
+			            <th>Political Affiliation</th>
+			            <th data-toggle="tooltip" data-placement="top" title="State in which the election is predicted to be close">Battleground State</th>
+			            <th data-toggle="tooltip" data-placement="top" title="This metric prioritizes predicted close races and states with smaller populations. The closer the race is predicted to be, the more impact gaining an additional vote will have. Similarly, the smaller the state's population, the more impact gaining additional vote will have. Values represent the multiplier impact compared to the average candidate. <0.5 = low impact  1.0 = average  >2 = high impact">Donation Impact Factor</th>
+			            <th data-toggle="tooltip" data-placement="top" title="Calculated percent that the candidate aligns with your social views">Social Similarity (%)</th>
+			            <th data-toggle="tooltip" data-placement="top" title="Calculated percent that the candidate aligns with your economic views">Economic Similarity (%)</th>
+			        </tr>
+			    </thead>
+			    <tbody>
+			        {% for x in can_data.values %}
+			  		<tr>
+			  			<!-- the output order of the columns is alphabetical by data field-->
+			  			<!-- if adding new columns, the order may change -->
+
+			  			<!-- name -->
+				        <td>{{ x.3 }}</td>
+				        <!-- overall_sim -->
+				        <td>{{ x.4 }}</td>
+				        <!-- election_pred -->
+				        <td>{{ x.2 }}</td>
+				        <!-- state -->
+				        <td>{{ x.8 }}</td>
+				        <!-- year -->
+<!-- 				        <td>{{ x.9 }}</td> -->
+				        <!-- party -->
+				        <td>{{ x.5 }}
+				        <!-- battleground -->
+				        <td>{{ x.0 }}</td>
+				        <!-- return_on_donation -->
+				        <td>{{ x.6 }}</td>
+				        <!-- social_sim -->
+				        <td>{{ x.7 }}</td>	
+				        <!-- econ_sim -->
+				        <td>{{ x.1 }}</td>
+				    </tr>
+			    	{% endfor %}
+				</tbody>
+			</table>
+		</div>
+
+		<!-- ############################# -->
+		<!-- right half of candidate tab -->
+		<!-- ############################# -->
+
+		<div class="viz">
+			<div class="detail">
+				<h4>Interactive chart compares your viewpoints to all candidates, with option to compare against additional data fields. Zoom in/out, and hover over individual points to learn more about that particular candidate.</h4>
+				<br>
+					<!-- button to toggle between prediction plot and similarity plot -->
+				<p>Data to display: <button id="plot_prediction" class="w3-button" onclick="renderPlot(view='Candidates', 'NA', data_to_view='prediction', 'NA'); candidate_scale(); $(this).hide(); $('#plot_similarity').show()">Prediction Scores</button>
+				<button id="plot_similarity" class="w3-button" style="display: none;" onclick="renderPlot(view='Candidates', 'NA', data_to_view='similarity', 'NA'); candidate_scale(); $(this).hide(); $('#plot_prediction').show()">Similarity Scores</button>
+
+				<!-- button to toggle between coloring by state and by party -->
+				Categorize By: <button id="plot_state" class="w3-button" onclick="renderPlot(view='Candidates', state_filter='NA', data_to_view='NA', category='state'); candidate_scale(); $(this).hide(); $('#plot_party').show()">State</button>
+				<button id="plot_party" class="w3-button" style="display: none;" onclick="renderPlot(view='Candidates', state_filter='NA', data_to_view='NA', category='party'); candidate_scale(); $(this).hide(); $('#plot_state').show()">Polical Affiliation</button></p>
+			</div>
+
+			<!-- visualization -->
+			<div id="can_scatter"></div>
+			<!-- button to rescale viz -->
+    		<input id="candidate_rescale" type="button" class="w3-btn w3-block" name="candidate_rescale" value="Rescale">
+    	</div>
+	</div>
+
+
+
+
+
+
+
+
+	<!-- ############################# -->
+	<!-- Senator Tab -->
+	<!-- ############################# -->
+
+	<div id="Senators" class="tabcontent">
+
+		<!-- ############################# -->
+		<!-- left half of senator tab -->
+		<!-- ############################# -->
+
+		<div class='table'>
+			<div class="detail">
+				<h4>This table of senators is initially sorted by those that align with your political views the most. You can re-sort based on any field to explore best and worst matches.</h4>
+				<h6>You can interact with this table in a number of ways. For instance, to sort by multiple, hold SHIFT and select the columns. Also, you can sse the search box to filter any of the fields. To learn more about a specific column, mouse over the column header for a short description. If you are still a bit unclear, check out the <a href="/home/explanation/">'How it Works'</a> page for a more detailed description of how we obtained these results.</h6>
+			</div>
+			<table id="senator_table" class="display" cellspacing="0" width="90%">
+				<thead>
+			        <tr>
+			            <th>Senator</th>
+			            <th data-toggle="tooltip" data-placement="top" title="Calculated percent that the candidate aligns with your views">Overall Similarity (%)</th>
+			            <th>State</th>
+			            <th>Political Affiliation</th>
+			            <th data-toggle="tooltip" data-placement="top" title="Calculated percent that the candidate aligns with your social views">Social Similarity (%)</th>
+			            <th data-toggle="tooltip" data-placement="top" title="Calculated percent that the candidate aligns with your economic views">Economic Similarity (%)</th>
+			        </tr>
+	    		</thead>
+			    <tbody>
+			        {% for y in sen_data.values %}
+			  		<tr>
+			  			<!-- name -->
+				        <td>{{ y.1 }}</td>
+				        <!-- overall_sim -->
+				        <td>{{ y.2 }}</td>
+				        <!-- state -->
+				        <td>{{ y.5 }}</td>
+				        <!-- party -->
+				        <td>{{ y.3 }}</td>
+				        <!-- social_sim -->
+				        <td>{{ y.4 }}</td>
+				        <!-- econ_sim -->
+				        <td>{{ y.0 }}
+				    </tr>
+			    	{% endfor %}
+				</tbody>
+			</table>
+		</div>
+
+		<!-- ############################# -->
+		<!-- right half of the senator tab -->
+		<!-- ############################# -->
+
+		<div class="viz">
+			<div class="detail">
+				<h4>Interactive chart compares your viewpoints to all candidates, with option to compare against additional data fields. Zoom in/out, and hover over individual points to learn more about that particular senator.</h4>
+
+				<!-- button to toggle between coloring by state and by party -->
+				<p>Categorize By: <button id="plot_state_sen" class="w3-button" onclick="renderPlot(view='Senators', state_filter='NA', data_to_view='NA', category='state'); senator_scale(); $(this).hide(); $('#plot_party_sen').show()">State</button>
+				<button id="plot_party_sen" class="w3-button" style="display: none;" onclick="renderPlot(view='Senators', state_filter='NA', data_to_view='NA', category='party'); senator_scale(); $(this).hide(); $('#plot_state_sen').show()">Polical Affiliation</button></p>
+			</div>
+
+
+			<div id="sen_scatter"></div>
+	    	<input id="senator_rescale" type="button" class="w3-btn w3-block" name="senator_rescale" value="Rescale">
+    	</div>
+	</div>
+
+
+<script type="text/Javascript">
+
+	// Display tooltip over column header
+	$(document).ready(function(){
+    	$('[data-toggle="tooltip"]').tooltip({
+    		container: 'body'
+    		});   
+	});
+
+	// Default to sort by overall similarity
+	$(document).ready(function() {
+    	var table = $('#candidate_table').DataTable({
+        	"order": [[ 1, "desc" ]],
+        	"oLanguage": {
+			"sSearch": "Field Search: "
+			}
+    	});
+	});
+
+	// Default to sort by overall similarity
+	$(document).ready(function() {
+    	$('#senator_table').DataTable({
+        	"order": [[ 1, "desc" ]],
+        	"oLanguage": {
+			"sSearch": "Field Search: "
+			}
+    	});
+	});
+
+	// function to open the different tabs
+	function openTab(evt, name) {
+	    var i, tabcontent, tablinks;
+	    tabcontent = document.getElementsByClassName("tabcontent");
+	    for (i = 0; i < tabcontent.length; i++) {
+	        tabcontent[i].style.display = "none";
+	    }
+	    tablinks = document.getElementsByClassName("tablinks");
+	    for (i = 0; i < tablinks.length; i++) {
+	        tablinks[i].className = tablinks[i].className.replace(" active", "");
+	    }
+	    document.getElementById(name).style.display = "block";
+	    evt.currentTarget.className += " active";
+	}
+
+	// open the candidate table by default
+	document.getElementById("defaultOpen").click();
+
+	// Change style of navbar on scroll
+	window.onscroll = function() {myFunction()};
+	function myFunction() {
+	    var navbar = document.getElementById("myNavbar");
+	    if (document.body.scrollTop > 0 || document.documentElement.scrollTop > 0) {
+	        navbar.className = "w3-bar" + " w3-card" + " w3-animate-top" + " w3-white";
+	    } else {
+	        navbar.className = navbar.className.replace(" w3-card w3-animate-top w3-white", "");
+	    }
+	}
+
+	// Used to toggle the menu on small screens when clicking on the menu button
+	function toggleFunction() {
+	    var x = document.getElementById("navDemo");
+	    if (x.className.indexOf("w3-show") == -1) {
+	        x.className += " w3-show";
+	    } else {
+	        x.className = x.className.replace(" w3-show", "");
+	    }
+	}
+
+	var global_state = null;
+	var global_data_to_view = null;
+	var global_category = null;
+
+	// d3 visualization for candidate similarity
+	function renderPlot(view, state_filter, data_to_view, category){
+ 
+
+		// These values are used to allow a user to change their view with one button,
+		// and then have the adjusted view persist when changing the view with a different button.
+
+		if (state_filter == 'NA'){
+			state_filter = global_state;
+		}
+		if (data_to_view == 'NA'){
+			data_to_view = global_data_to_view;
+		}
+		if (category == 'NA'){
+			category = global_category;
+		}
+
+		global_state = state_filter;
+		global_data_to_view = data_to_view;
+		global_category = category;
+
+		if (view == 'Senators'){
+			var data = {{ sen_json|safe }};
+			var element = "#sen_scatter";
+			var button = "#senator_rescale";
+			if (state_filter != null && state_filter != 'All'){
+				data=data
+					.filter(function(d){ return d.state == state_filter})
+			}
+
+		} else if (view == 'Candidates'){
+			var data = {{ can_json|safe }};
+			var element = '#can_scatter';
+			var button = '#candidate_rescale';
+			if (state_filter != null && state_filter != 'All'){
+				data=data
+					.filter(function(d){ return d.state == state_filter})
+			}
+		}
+
+		if (data_to_view == 'similarity' || data_to_view == null){
+			var xCat = 'econ_sim',
+		    	yCat = 'social_sim',
+		    	xlab = 'Economic Similarity (%)',
+		    	ylab = 'Social Similarity (%)',
+		    	title_data = 'Economic vs Social Similarity ';
+
+		} else if (data_to_view == 'prediction'){
+			var xCat = 'election_pred',
+		    	yCat = 'overall_sim',
+		    	xlab = 'Election Prediction',
+		    	ylab = 'Overall Similarity (%)',
+		    	title_data = 'Predicted Election Likelihood vs Overall Similarity ';
+		}
+
+		if (category == 'state'){
+			var colorCat = "state";
+			var color = d3.scale.category10();
+			var title_category = 'by State';
+		} else if (category == 'party' || category == null){
+			var colorCat = 'party'
+			var color = d3.scale.ordinal()
+				.domain(['Republican', 'Democrat', 'Libertarian', 'Green', 'Independent'])
+				.range(['#FF0000', '#4169E1', '#FFA500', '#008000', '#000000']);
+			var title_category = 'by Political Affiliation';
+		}
+
+		title_text = title_data + title_category;
+
+		var margin = { top: 50, right: 120, bottom: 50, left: 55 },
+		    // outerWidth = 1050,
+		    outerWidth = parseInt(d3.select(element).style('width')),
+		    outerHeight = 500,
+		    width = outerWidth - margin.left - margin.right,
+		    height = outerHeight - margin.top - margin.bottom;
+
+		var x = d3.scale.linear()
+		    .range([0, width]).nice();
+
+		var y = d3.scale.linear()
+		    .range([height, 0]).nice();
+
+		  // var xMax = d3.max(data, function(d) { return d[xCat]; }) * 1.03,
+		  //     xMin = d3.min(data, function(d) { return d[xCat]; }) * 0.97,
+		  //     xMin = xMin > 0 ? 0 : xMin,
+		  //     yMax = d3.max(data, function(d) { return d[yCat]; }) * 1.03,
+		  //     yMin = d3.min(data, function(d) { return d[yCat]; }) * 0.97,
+		  //     yMin = yMin; //> 0 ? 0 : yMin;
+
+		  var xMax = 100,
+		      xMin = 0,
+		      yMax = 100,
+		      yMin = 0;
+
+
+		  x.domain([xMin, xMax]);
+		  y.domain([yMin, yMax]);
+
+		  var xAxis = d3.svg.axis()
+		      .scale(x)
+		      .orient("bottom")
+		      .tickSize(-height);
+
+		  var yAxis = d3.svg.axis()
+		      .scale(y)
+		      .orient("left")
+		      .tickSize(-width);
+
+		  var tip = d3.tip()
+		      .attr("class", "d3-tip")
+		      .offset([-10, 0])
+		      .html(function(d) {
+		        // return xCat + ": " + d[xCat] + "<br>" + yCat + ": " + d[yCat];
+		        return d.name + '<br>' + 'Party: ' + d.party + '<br>' + 'State: ' + d.state +'<br>' + xlab + ': ' + d[xCat] +'%' + '<br>' + ylab + ': ' + d[yCat] + '%';
+		      });
+
+		  var zoomBeh = d3.behavior.zoom()
+		      .x(x)
+		      .y(y)
+		      .scaleExtent([0, 500])
+		      .on("zoom", zoom);
+
+		  d3.select(element).selectAll("svg").remove();
+		  var svg = d3.select(element)
+		    .append("svg")
+		      .attr("width", outerWidth)
+		      .attr("height", outerHeight)
+		    .append("g")
+		      .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+		      .call(zoomBeh);
+
+		  svg.call(tip);
+
+		  svg.append("rect")
+		      .attr("width", width)
+		      .attr("height", height);
+
+		  svg.append("g")
+		      .classed("x axis", true)
+		      .attr("transform", "translate(0," + height + ")")
+		      .call(xAxis)
+		    .append("text")
+		      .classed("label", true)
+		      .attr("x", width)
+		      .attr("y", margin.bottom - 10)
+		      .style("text-anchor", "end")
+		      .text(xlab);
+
+		  svg.append("g")
+		      .classed("y axis", true)
+		      .call(yAxis)
+		    .append("text")
+		      .classed("label", true)
+		      .attr("transform", "rotate(-90)")
+		      .attr("y", -margin.left)
+		      .attr("dy", ".9em")
+		      .style("text-anchor", "end")
+		      .text(ylab);
+
+	      svg.append("text")
+	        .attr("x", (width / 2))             
+	        .attr("y", 0 - (margin.top / 2))
+	        .attr("text-anchor", "middle")  
+	        .style("font-size", "20px") 
+	        .style("text-decoration", "underline")  
+	        .text(title_text);
+
+		  var objects = svg.append("svg")
+		      .classed("objects", true)
+		      .attr("width", width)
+		      .attr("height", height);
+
+		  objects.append("svg:line")
+		      .classed("axisLine hAxisLine", true)
+		      .attr("x1", 0)
+		      .attr("y1", 0)
+		      .attr("x2", width)
+		      .attr("y2", 0)
+		      .attr("transform", "translate(0," + height + ")");
+
+		  objects.append("svg:line")
+		      .classed("axisLine vAxisLine", true)
+		      .attr("x1", 0)
+		      .attr("y1", 0)
+		      .attr("x2", 0)
+		      .attr("y2", height);
+
+		  objects.selectAll(".dot")
+		      .data(data)
+		    .enter().append("circle")
+		      .classed("dot", true)
+		      .attr("r", function (d) { return 5; })
+		      .attr("transform", transform)
+		      .style("fill", function(d) { return color(d[colorCat]); })
+		      .on("mouseover", tip.show)
+		      .on("mouseout", tip.hide);
+		  //     .attr("class", function(d) {  
+		  // 		return "state " + "color-" + color(d.colorCat).substring(1);
+				// });
+
+		  var legend = svg.selectAll(".legend")
+		      .data(color.domain())
+		    .enter().append("g")
+		      .classed("legend", true)
+		      .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+
+		  legend.append("circle")
+		      .attr("r", 3.5)
+		      .attr("cx", width + 20)
+		      .attr("fill", color);
+		   //    .on("mouseover", function(d, i) {
+		  	// 		svg.selectAll("circle").style("stroke", "blue");
+					// })
+		   //    .on("mouseout", function(d, i) {
+		   //              svg.selectAll("circle").style("stroke", "white");
+		   //          });
+
+		  legend.append("text")
+		      .attr("x", width + 26)
+		      .attr("dy", ".35em")
+		      .text(function(d) { return d; });
+
+		  d3.select(button).on("click", change);
+
+		  function change() {
+		    // xMax = d3.max(data, function(d) { return d[xCat]; }) * 1.03;
+		    // xMin = d3.min(data, function(d) { return d[xCat]; }) * 0.97;
+
+		    zoomBeh.x(x.domain([xMin, xMax])).y(y.domain([yMin, yMax]));
+
+		    var svg = d3.select(element).transition();
+
+		    svg.select(".x.axis").duration(750).call(xAxis).select(".label").text(xlab);
+
+		    objects.selectAll(".dot").transition().duration(1000).attr("transform", transform);
+		  };
+
+		  function zoom() {
+		    svg.select(".x.axis").call(xAxis);
+		    svg.select(".y.axis").call(yAxis);
+
+		    svg.selectAll(".dot")
+		        .attr("transform", transform);
+		  };
+
+		  function transform(d) {
+		    return "translate(" + x(d[xCat]) + "," + y(d[yCat]) + ")";
+		  };
+	};
+
+	// default to open candidate view
+	function candidate_scale(){
+  		document.getElementById("candidate_rescale").click();
+	};
+  	function senator_scale(){
+  		document.getElementById("senator_rescale").click();
+  	};
+
+	// swap buttons when clicked
+  // 	function ShowHide(id) {
+  // 		if ($(id).html() == "Show") {
+  //   		$(id).html("Hide");
+  // 		} else {
+  //   		$(id).html("Show");
+  // 			}
+		// };
+
+  	function ShowHide(id) {
+  		var x = document.getElementById(id);
+	    if (x.style.display === "none") {
+	        x.style.display = "block";
+	    } else {
+	        x.style.display = "none";
+	    }
+		};
+
+
+	// Function to apply/remove the state filter when users want to see their local candidates/senators
+	function filterTable(table_element, state, column_idx){
+		var table = $(table_element).DataTable()
+		table.column(column_idx).search(state).draw();
+	};
+
+	function removeTableFilter(table_element, column_idx){
+		var table = $(table_element).DataTable();
+		table.column(column_idx).search('').draw();
+	};
+
+// #############################
+// HEAT MAP
+// #############################
+
+
+	function renderHeatMap(dataset, state_filter){
+
+		// if (state_filter == 'NA'){
+		// 	state_filter = global_state;
+		// };
+
+		if (dataset == 'CandidateViews'){
+			var data = {{ can_views|safe }};
+			var element = "#can_heatmap";
+			var colors = ["#4169E1","#bdcbf5","#ffffff","#f6a2b3","#e91640"];
+			// var colors = ["#0066ff","#cce0ff","#ffffff","#ffcccc","#ff1a1a"];
+        	var legend_labs = ['Liberal Stance','Liberal-leaning Stance','Neutral','Conservative-leaning Stance','Conservative Stance'];
+			var colorScale = d3.scale.ordinal()
+				.domain(['-5','-2.5','0','2.5','5'])
+				.range(colors);
+			// if (state_filter != null && state_filter != 'All'){
+			// 	data=data
+			// 		.filter(function(d){ return d.state == state_filter})
+			// 	};
+			};
+
+		if (dataset == 'CandidateViewsDiff'){
+			var data = {{ can_views_diff|safe }};
+			var element = "#can_heatmap";
+        		colors = ['#B22222', '#efa9a9', '#F8F8FF', '#90EE90', '#2E8B57'];
+        		legend_labs = ['Completely Opposing Views','Mostly Opposing Views','Unaligned','Mostly Aligned Views','Completely Aligned Views'];
+        		var colorScale = d3.scale.ordinal()
+        			.domain(['0','2.5','5','7.5','10'])
+        			.range(colors);
+			// if (state_filter != null && state_filter != 'All'){
+			// 	data=data
+			// 		.filter(function(d){ return d.state == state_filter})
+			// };
+
+		};
+
+		var topics = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20'];
+		var topic_text = ['Abortion is a woman\'s unrestricted right', 'Legally require hiring more women & minorities', 'Comfortable with same-sex marriage','Keep God in the public sphere','Expand ObamaCare','Privatize Social Security','Vouchers for school choice','EPA regulations are too restrictive','Stricter punishment reduces crime','Absolute right to gun ownership','Higher taxes on the wealthy','Pathway to citizenship for illegal aliens','Support & expand free trade','Support American Exceptionalism','Expand the military','Make voter registration easier','Avoid foreign entanglements','Prioritize green energy','Marijuana is a gateway drug','Stimulus better than market-led recovery'];
+		var name_arr = [];
+
+		// Create array of unique candidate names
+		for(var x in data){
+  			name_arr.push(data[x].candidate);
+		};
+		name_arr = name_arr.reverse().filter(function (e, i, arr) {
+    		return name_arr.indexOf(e, i+1) === -1;
+			}).reverse();
+
+		var margin = { top: 320, right: 250, bottom: 100, left: 170 },
+			width = parseInt(d3.select(element).style('width')) - margin.left - margin.right,
+			// height = 2650 - margin.top - margin.bottom,
+			gridSize = Math.floor(width / 20),
+			height = (gridSize*name_arr.length),
+			legendElementWidth = gridSize*2,
+			buckets = 5;
+
+		d3.select(element).selectAll("svg").remove();
+		var svg = d3.select(element).append("svg")
+			.attr("width", width + margin.left + margin.right)
+			.attr("height", height + margin.top + margin.bottom)
+			.append("g")
+			.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+		var nameLabels = svg.selectAll(".nameLabel")
+          .data(name_arr)
+          .enter().append("text")
+            .text(function (d) { return d; })
+            .attr("x", 0)
+            .attr("y", function (d, i) { return i * gridSize; })
+            .style("text-anchor", "end")
+            .attr("transform", "translate(-6," + gridSize / 1.5 + ")")
+            .attr("class", function (d, i) { return ((i >= 0 && i <= 4) ? "nameLabel mono axis axis-workweek" : "nameLabel mono axis"); });
+
+        var topicLabels = svg.selectAll(".topicLabel")
+          .data(topics)
+          .enter().append("text")
+          .text(function(d) { return topic_text[d-1]; })
+            .attr("transform", function(d, i) { return "translate(" + ( (i + 0.5) * gridSize) + ",-18)" + "rotate(-70)"; })
+            .style("text-anchor", "start")
+            .attr("class", function(d, i) { return ((i >= 7 && i <= 16) ? "topicLabel mono axis axis-worktime" : "topicLabel mono axis"); });
+
+
+      		var cards = svg.selectAll(".topic")
+          		.data(data, function(d) {return d.candidate+':'+d.topic;});
+
+          	cards.append("title");
+
+			cards.enter().append("rect")
+			  .attr("x", function(d) { return (d.topic - 1) * gridSize; })
+			  .attr("y", function(d) { return (d.can_id - 1) * gridSize; })
+			  .attr("rx", 4)
+			  .attr("ry", 4)
+			  .attr("class", "topic bordered")
+			  .attr("width", gridSize)
+			  .attr("height", gridSize)
+			  .style("fill", colors[0]);
+
+			cards.transition().duration(1000)
+			  .style("fill", function(d) { return colorScale(d.value); });
+
+			cards.select("title").text(function(d) { return d.value; });
+
+			cards.exit().remove();
+
+			var legend = svg.selectAll(".legend")
+				.data(legend_labs, function(d){ return d;});
+
+      		legend.enter().append("g")
+          		.attr("class", "legend");
+
+
+			legend.append("rect")
+				.attr("x", width+10)
+				.attr("y", function(d, i) { return legendElementWidth * i; })
+				.attr("height", legendElementWidth)
+				.attr("width", gridSize / 2)
+				.style("fill", function(d, i) { return colors[i]; });
+
+			legend.append("text")
+				.attr("class", "mono")
+				.text(function(d) { return d; })
+				.attr("x", width + 35)
+				.attr("y", function(d, i) { return ((legendElementWidth * i) + (legendElementWidth*0.6)) });
+
+			legend.exit().remove();
+			// };
+        };
+
+        // });
+
+	// };
+
+</script>
+</body>
+
+</html>

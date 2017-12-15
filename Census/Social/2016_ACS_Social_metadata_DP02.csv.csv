@@ -1,0 +1,155 @@
+GEO.id,Id
+GEO.id2,Id2
+GEO.display-label,Geography
+HC01_VC03,HOUSEHOLDS BY TYPE - Total households
+HC01_VC04,HOUSEHOLDS BY TYPE - Total households - Family households (families)
+HC01_VC05,HOUSEHOLDS BY TYPE - Total households - Family households (families) - With own children of the householder under 18 years
+HC01_VC06,HOUSEHOLDS BY TYPE - Total households - Family households (families) - Married-couple family
+HC01_VC07,HOUSEHOLDS BY TYPE - Total households - Family households (families) - Married-couple family - With own children of the householder under 18 years
+HC01_VC08,"HOUSEHOLDS BY TYPE - Total households - Family households (families) - Male householder, no wife present, family"
+HC01_VC09,"HOUSEHOLDS BY TYPE - Total households - Family households (families) - Male householder, no wife present, family - With own children of the householder under 18 years"
+HC01_VC10,"HOUSEHOLDS BY TYPE - Total households - Family households (families) - Female householder, no husband present, family"
+HC01_VC11,"HOUSEHOLDS BY TYPE - Total households - Family households (families) - Female householder, no husband present, family - With own children of the householder under 18 years"
+HC01_VC12,HOUSEHOLDS BY TYPE - Total households - Nonfamily households
+HC01_VC13,HOUSEHOLDS BY TYPE - Total households - Nonfamily households - Householder living alone
+HC01_VC14,HOUSEHOLDS BY TYPE - Total households - Nonfamily households - Householder living alone - 65 years and over
+HC01_VC17,HOUSEHOLDS BY TYPE - Households with one or more people under 18 years
+HC01_VC18,HOUSEHOLDS BY TYPE - Households with one or more people 65 years and over
+HC01_VC21,HOUSEHOLDS BY TYPE - Average household size
+HC01_VC22,HOUSEHOLDS BY TYPE - Average family size
+HC01_VC26,RELATIONSHIP - Population in households
+HC01_VC27,RELATIONSHIP - Population in households - Householder
+HC01_VC28,RELATIONSHIP - Population in households - Spouse
+HC01_VC29,RELATIONSHIP - Population in households - Child
+HC01_VC30,RELATIONSHIP - Population in households - Other relatives
+HC01_VC31,RELATIONSHIP - Population in households - Nonrelatives
+HC01_VC32,RELATIONSHIP - Population in households - Nonrelatives - Unmarried partner
+HC01_VC36,MARITAL STATUS - Males 15 years and over
+HC01_VC37,MARITAL STATUS - Males 15 years and over - Never married
+HC01_VC38,"MARITAL STATUS - Males 15 years and over - Now married, except separated"
+HC01_VC39,MARITAL STATUS - Males 15 years and over - Separated
+HC01_VC40,MARITAL STATUS - Males 15 years and over - Widowed
+HC01_VC41,MARITAL STATUS - Males 15 years and over - Divorced
+HC01_VC43,MARITAL STATUS - Females 15 years and over
+HC01_VC44,MARITAL STATUS - Females 15 years and over - Never married
+HC01_VC45,"MARITAL STATUS - Females 15 years and over - Now married, except separated"
+HC01_VC46,MARITAL STATUS - Females 15 years and over - Separated
+HC01_VC47,MARITAL STATUS - Females 15 years and over - Widowed
+HC01_VC48,MARITAL STATUS - Females 15 years and over - Divorced
+HC01_VC52,FERTILITY - Number of women 15 to 50 years old who had a birth in the past 12 months
+HC01_VC53,"FERTILITY - Number of women 15 to 50 years old who had a birth in the past 12 months - Unmarried women (widowed, divorced, and never married)"
+HC01_VC54,"FERTILITY - Number of women 15 to 50 years old who had a birth in the past 12 months - Unmarried women (widowed, divorced, and never married) - Per 1,000 unmarried women"
+HC01_VC55,"FERTILITY - Number of women 15 to 50 years old who had a birth in the past 12 months - Per 1,000 women 15 to 50 years old"
+HC01_VC56,"FERTILITY - Number of women 15 to 50 years old who had a birth in the past 12 months - Per 1,000 women 15 to 19 years old"
+HC01_VC57,"FERTILITY - Number of women 15 to 50 years old who had a birth in the past 12 months - Per 1,000 women 20 to 34 years old"
+HC01_VC58,"FERTILITY - Number of women 15 to 50 years old who had a birth in the past 12 months - Per 1,000 women 35 to 50 years old"
+HC01_VC62,GRANDPARENTS - Number of grandparents living with own grandchildren under 18 years
+HC01_VC63,GRANDPARENTS - Number of grandparents living with own grandchildren under 18 years - Grandparents responsible for grandchildren
+HC01_VC65,GRANDPARENTS - Number of grandparents living with own grandchildren under 18 years - Years responsible for grandchildren - Less than 1 year
+HC01_VC66,GRANDPARENTS - Number of grandparents living with own grandchildren under 18 years - Years responsible for grandchildren - 1 or 2 years
+HC01_VC67,GRANDPARENTS - Number of grandparents living with own grandchildren under 18 years - Years responsible for grandchildren - 3 or 4 years
+HC01_VC68,GRANDPARENTS - Number of grandparents living with own grandchildren under 18 years - Years responsible for grandchildren - 5 or more years
+HC01_VC70,GRANDPARENTS - Number of grandparents responsible for own grandchildren under 18 years
+HC01_VC71,GRANDPARENTS - Number of grandparents responsible for own grandchildren under 18 years - Who are female
+HC01_VC72,GRANDPARENTS - Number of grandparents responsible for own grandchildren under 18 years - Who are married
+HC01_VC76,SCHOOL ENROLLMENT - Population 3 years and over enrolled in school
+HC01_VC77,"SCHOOL ENROLLMENT - Population 3 years and over enrolled in school - Nursery school, preschool"
+HC01_VC78,SCHOOL ENROLLMENT - Population 3 years and over enrolled in school - Kindergarten
+HC01_VC79,SCHOOL ENROLLMENT - Population 3 years and over enrolled in school - Elementary school (grades 1-8)
+HC01_VC80,SCHOOL ENROLLMENT - Population 3 years and over enrolled in school - High school (grades 9-12)
+HC01_VC81,SCHOOL ENROLLMENT - Population 3 years and over enrolled in school - College or graduate school
+HC01_VC85,EDUCATIONAL ATTAINMENT - Population 25 years and over
+HC01_VC86,EDUCATIONAL ATTAINMENT - Population 25 years and over - Less than 9th grade
+HC01_VC87,"EDUCATIONAL ATTAINMENT - Population 25 years and over - 9th to 12th grade, no diploma"
+HC01_VC88,EDUCATIONAL ATTAINMENT - Population 25 years and over - High school graduate (includes equivalency)
+HC01_VC89,"EDUCATIONAL ATTAINMENT - Population 25 years and over - Some college, no degree"
+HC01_VC90,EDUCATIONAL ATTAINMENT - Population 25 years and over - Associate's degree
+HC01_VC91,EDUCATIONAL ATTAINMENT - Population 25 years and over - Bachelor's degree
+HC01_VC92,EDUCATIONAL ATTAINMENT - Population 25 years and over - Graduate or professional degree
+HC01_VC95,EDUCATIONAL ATTAINMENT - Percent high school graduate or higher
+HC01_VC96,EDUCATIONAL ATTAINMENT - Percent bachelor's degree or higher
+HC01_VC100,VETERAN STATUS - Civilian population 18 years and over
+HC01_VC101,VETERAN STATUS - Civilian population 18 years and over - Civilian veterans
+HC01_VC105,DISABILITY STATUS OF THE CIVILIAN NONINSTITUTIONALIZED POPULATION - Total Civilian Noninstitutionalized Population
+HC01_VC106,DISABILITY STATUS OF THE CIVILIAN NONINSTITUTIONALIZED POPULATION - Total Civilian Noninstitutionalized Population - With a disability
+HC01_VC108,DISABILITY STATUS OF THE CIVILIAN NONINSTITUTIONALIZED POPULATION - Under 18 years
+HC01_VC109,DISABILITY STATUS OF THE CIVILIAN NONINSTITUTIONALIZED POPULATION - Under 18 years - With a disability
+HC01_VC111,DISABILITY STATUS OF THE CIVILIAN NONINSTITUTIONALIZED POPULATION - 18 to 64 years
+HC01_VC112,DISABILITY STATUS OF THE CIVILIAN NONINSTITUTIONALIZED POPULATION - 18 to 64 years - With a disability
+HC01_VC114,DISABILITY STATUS OF THE CIVILIAN NONINSTITUTIONALIZED POPULATION - 65 years and over
+HC01_VC115,DISABILITY STATUS OF THE CIVILIAN NONINSTITUTIONALIZED POPULATION - 65 years and over - With a disability
+HC01_VC119,RESIDENCE 1 YEAR AGO - Population 1 year and over
+HC01_VC120,RESIDENCE 1 YEAR AGO - Population 1 year and over - Same house
+HC01_VC121,RESIDENCE 1 YEAR AGO - Population 1 year and over - Different house in the U.S.
+HC01_VC122,RESIDENCE 1 YEAR AGO - Population 1 year and over - Different house in the U.S. - Same county
+HC01_VC123,RESIDENCE 1 YEAR AGO - Population 1 year and over - Different house in the U.S. - Different county
+HC01_VC124,RESIDENCE 1 YEAR AGO - Population 1 year and over - Different house in the U.S. - Different county - Same state
+HC01_VC125,RESIDENCE 1 YEAR AGO - Population 1 year and over - Different house in the U.S. - Different county - Different state
+HC01_VC126,RESIDENCE 1 YEAR AGO - Population 1 year and over - Abroad
+HC01_VC130,PLACE OF BIRTH - Total population
+HC01_VC131,PLACE OF BIRTH - Total population - Native
+HC01_VC132,PLACE OF BIRTH - Total population - Native - Born in United States
+HC01_VC133,PLACE OF BIRTH - Total population - Native - Born in United States - State of residence
+HC01_VC134,PLACE OF BIRTH - Total population - Native - Born in United States - Different state
+HC01_VC135,"PLACE OF BIRTH - Total population - Native - Born in Puerto Rico, U.S. Island areas, or born abroad to American parent(s)"
+HC01_VC136,PLACE OF BIRTH - Total population - Foreign born
+HC01_VC140,U.S. CITIZENSHIP STATUS - Foreign-born population
+HC01_VC141,U.S. CITIZENSHIP STATUS - Foreign-born population - Naturalized U.S. citizen
+HC01_VC142,U.S. CITIZENSHIP STATUS - Foreign-born population - Not a U.S. citizen
+HC01_VC146,YEAR OF ENTRY - Population born outside the United States
+HC01_VC149,YEAR OF ENTRY - Native
+HC01_VC150,YEAR OF ENTRY - Native - Entered 2010 or later
+HC01_VC151,YEAR OF ENTRY - Native - Entered before 2010
+HC01_VC154,YEAR OF ENTRY - Foreign born
+HC01_VC155,YEAR OF ENTRY - Foreign born - Entered 2010 or later
+HC01_VC156,YEAR OF ENTRY - Foreign born - Entered before 2010
+HC01_VC160,"WORLD REGION OF BIRTH OF FOREIGN BORN - Foreign-born population, excluding population born at sea"
+HC01_VC161,"WORLD REGION OF BIRTH OF FOREIGN BORN - Foreign-born population, excluding population born at sea - Europe"
+HC01_VC162,"WORLD REGION OF BIRTH OF FOREIGN BORN - Foreign-born population, excluding population born at sea - Asia"
+HC01_VC163,"WORLD REGION OF BIRTH OF FOREIGN BORN - Foreign-born population, excluding population born at sea - Africa"
+HC01_VC164,"WORLD REGION OF BIRTH OF FOREIGN BORN - Foreign-born population, excluding population born at sea - Oceania"
+HC01_VC165,"WORLD REGION OF BIRTH OF FOREIGN BORN - Foreign-born population, excluding population born at sea - Latin America"
+HC01_VC166,"WORLD REGION OF BIRTH OF FOREIGN BORN - Foreign-born population, excluding population born at sea - Northern America"
+HC01_VC170,LANGUAGE SPOKEN AT HOME - Population 5 years and over
+HC01_VC171,LANGUAGE SPOKEN AT HOME - Population 5 years and over - English only
+HC01_VC172,LANGUAGE SPOKEN AT HOME - Population 5 years and over - Language other than English
+HC01_VC173,"LANGUAGE SPOKEN AT HOME - Population 5 years and over - Language other than English - Speak English less than ""very well"""
+HC01_VC174,LANGUAGE SPOKEN AT HOME - Population 5 years and over - Spanish
+HC01_VC175,"LANGUAGE SPOKEN AT HOME - Population 5 years and over - Spanish - Speak English less than ""very well"""
+HC01_VC176,LANGUAGE SPOKEN AT HOME - Population 5 years and over - Other Indo-European languages
+HC01_VC177,"LANGUAGE SPOKEN AT HOME - Population 5 years and over - Other Indo-European languages - Speak English less than ""very well"""
+HC01_VC178,LANGUAGE SPOKEN AT HOME - Population 5 years and over - Asian and Pacific Islander languages
+HC01_VC179,"LANGUAGE SPOKEN AT HOME - Population 5 years and over - Asian and Pacific Islander languages - Speak English less than ""very well"""
+HC01_VC180,LANGUAGE SPOKEN AT HOME - Population 5 years and over - Other languages
+HC01_VC181,"LANGUAGE SPOKEN AT HOME - Population 5 years and over - Other languages - Speak English less than ""very well"""
+HC01_VC185,ANCESTRY - Total population
+HC01_VC186,ANCESTRY - Total population - American
+HC01_VC187,ANCESTRY - Total population - Arab
+HC01_VC188,ANCESTRY - Total population - Czech
+HC01_VC189,ANCESTRY - Total population - Danish
+HC01_VC190,ANCESTRY - Total population - Dutch
+HC01_VC191,ANCESTRY - Total population - English
+HC01_VC192,ANCESTRY - Total population - French (except Basque)
+HC01_VC193,ANCESTRY - Total population - French Canadian
+HC01_VC194,ANCESTRY - Total population - German
+HC01_VC195,ANCESTRY - Total population - Greek
+HC01_VC196,ANCESTRY - Total population - Hungarian
+HC01_VC197,ANCESTRY - Total population - Irish
+HC01_VC198,ANCESTRY - Total population - Italian
+HC01_VC199,ANCESTRY - Total population - Lithuanian
+HC01_VC200,ANCESTRY - Total population - Norwegian
+HC01_VC201,ANCESTRY - Total population - Polish
+HC01_VC202,ANCESTRY - Total population - Portuguese
+HC01_VC203,ANCESTRY - Total population - Russian
+HC01_VC204,ANCESTRY - Total population - Scotch-Irish
+HC01_VC205,ANCESTRY - Total population - Scottish
+HC01_VC206,ANCESTRY - Total population - Slovak
+HC01_VC207,ANCESTRY - Total population - Subsaharan African
+HC01_VC208,ANCESTRY - Total population - Swedish
+HC01_VC209,ANCESTRY - Total population - Swiss
+HC01_VC210,ANCESTRY - Total population - Ukrainian
+HC01_VC211,ANCESTRY - Total population - Welsh
+HC01_VC212,ANCESTRY - Total population - West Indian (excluding Hispanic origin groups)
+HC01_VC216,COMPUTERS AND INTERNET USE - Total households
+HC01_VC217,COMPUTERS AND INTERNET USE - Total households - With a computer
+HC01_VC218,COMPUTERS AND INTERNET USE - Total households - With a broadband Internet subscription
