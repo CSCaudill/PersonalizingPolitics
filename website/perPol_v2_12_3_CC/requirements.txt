@@ -1,4 +1,4 @@
-Django==1.11.7
+Django==2.2.24
 pytz==2017.3
 us==1.0.0
 pandas==0.20.3
